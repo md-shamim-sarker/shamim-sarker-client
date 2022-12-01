@@ -1,11 +1,11 @@
 import React from 'react';
 
-const AdBlog = () => {
+const Projects = () => {
     return (
         <div>
-
+            Projects page
         </div>
     );
 };
 
-export default AdBlog;
+export default Projects;
