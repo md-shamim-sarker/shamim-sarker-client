@@ -42,7 +42,8 @@ const router = createBrowserRouter([
         element: <NotesLayout></NotesLayout>,
         children: [
             {
-                path: "/notes",
+                path: "/notes/:id",
+                loader: ({params}) => fetch(`http://localhost:5000/notes/id/${params.id}`),
                 element: <Notes></Notes>
             }
         ],

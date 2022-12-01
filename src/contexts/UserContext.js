@@ -5,6 +5,7 @@ export const AuthContext = createContext();
 const UserContext = ({children}) => {
     const [storedCategories, setStoredCategories] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [currectLocation, setCurrentLocation] = useState("/");
 
     useEffect(() => {
         fetch('http://localhost:5000/categories')
@@ -16,7 +17,9 @@ const UserContext = ({children}) => {
     const authInfo = {
         storedCategories,
         loading,
-        setLoading
+        setLoading,
+        currectLocation,
+        setCurrentLocation
     };
 
     return (

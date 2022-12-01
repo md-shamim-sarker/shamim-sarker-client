@@ -2,22 +2,47 @@ import React from 'react';
 import {Link, NavLink} from 'react-router-dom';
 
 const menuItem = <>
-    <li><NavLink to={"/"}>Portfolio</NavLink></li>
-    <li><NavLink to={"/about"}>About</NavLink></li>
-    <li><NavLink to={"/projects"}>Projects</NavLink></li>
-    <li><NavLink to={"/add-notes"}>Add Notes</NavLink></li>
-    <li><NavLink to={"/notes"}>Notes</NavLink></li>
-    <li><NavLink to={"/contact"}>Contact</NavLink></li>
+    <li><NavLink
+        to={"/"}
+        className={({isActive}) => isActive && 'border-b-2 border-blue-700'}>
+        Portfolio
+    </NavLink></li>
+    <li><NavLink
+        to={"/about"}
+        className={({isActive}) => isActive && 'border-b-2 border-blue-700'}>
+        About
+    </NavLink></li>
+    <li><NavLink
+        to={"/projects"}
+        className={({isActive}) => isActive && 'border-b-2 border-blue-700'}>
+        Projects
+    </NavLink></li>
+    <li><NavLink
+        to={"/add-notes"}
+        className={({isActive}) => isActive && 'border-b-2 border-blue-700'}>
+        Add Notes
+    </NavLink></li>
+    <li><NavLink to={"/notes"}
+        className={({isActive}) => isActive && 'border-b-2 border-blue-700'}>
+        Notes
+    </NavLink></li>
+    <li><NavLink to={"/contact"}
+        className={({isActive}) => isActive && 'border-b-2 border-blue-700'}>
+        Contact
+    </NavLink></li>
 </>;
 
 const Navbar = () => {
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-gray-100 fixed top-0 z-50 mb-20">
             <div className="navbar-start">
                 <div className="dropdown">
-                    <label tabIndex={0} className="btn btn-ghost lg:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-                    </label>
+                    {
+                        window.location.pathname === '/notes' ||
+                        <label tabIndex={0} className="btn btn-ghost lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                        </label>
+                    }
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         {menuItem}
                     </ul>
@@ -31,6 +56,12 @@ const Navbar = () => {
             </div>
             <div className="navbar-end">
                 <Link className="btn btn-primary">Login</Link>
+                {
+                    window.location.pathname === '/notes' &&
+                    <label htmlFor="notes-drawer" className="btn btn-ghost drawer-button lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                    </label>
+                }
             </div>
         </div>
     );

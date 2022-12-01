@@ -1,9 +1,11 @@
 import React from 'react';
+import {useLoaderData} from 'react-router-dom';
 
 const Notes = () => {
+    const note = useLoaderData();
     return (
         <div>
-            Notes page
+            {JSON.stringify(note)}
         </div>
     );
 };
