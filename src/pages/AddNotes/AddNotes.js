@@ -14,8 +14,28 @@ const AddNotes = () => {
         const form = event.target;
         const category = form.category.value;
         const heading = form.heading.value;
-        const notes = {category, heading, inputs};
-        console.log(notes);
+        const categoryObj = {category};
+        const noteObj = {category, heading, inputs};
+        console.log(noteObj);
+
+        fetch('http://localhost:5000/categories', {
+            method: 'POST',
+            headers: {'content-type': 'application/json'},
+            body: JSON.stringify(categoryObj)
+        }).then((result) => {
+            console.log(result);
+            fetch('http://localhost:5000/notes', {
+                method: 'POST',
+                headers: {'content-type': 'application/json'},
+                body: JSON.stringify(noteObj)
+            }).then((result) => {
+                console.log(result);
+            }).catch(error => {
+                console.error(error.message);
+            });
+        }).catch(error => {
+            console.error(error.message);
+        });
     };
 
     // handle input change
@@ -66,8 +86,8 @@ const AddNotes = () => {
                         className="btn btn-primary">
                         {
                             newCategory
-                                ? <BsArrowDownCircle className='text-3xl'></BsArrowDownCircle>
-                                : <AiOutlinePlusCircle className='text-3xl'></AiOutlinePlusCircle>
+                                ? <BsArrowDownCircle title='Go back to select option' className='text-3xl'></BsArrowDownCircle>
+                                : <AiOutlinePlusCircle title='Add a new category' className='text-3xl'></AiOutlinePlusCircle>
                         }
 
                     </button>

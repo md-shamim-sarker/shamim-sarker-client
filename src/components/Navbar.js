@@ -2,7 +2,7 @@ import React from 'react';
 import {Link, NavLink} from 'react-router-dom';
 
 const menuItem = <>
-    <li><NavLink to={"/"}>Home</NavLink></li>
+    <li><NavLink to={"/"}>Portfolio</NavLink></li>
     <li><NavLink to={"/about"}>About</NavLink></li>
     <li><NavLink to={"/projects"}>Projects</NavLink></li>
     <li><NavLink to={"/add-notes"}>Add Notes</NavLink></li>
