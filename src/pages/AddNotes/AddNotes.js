@@ -1,12 +1,14 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {AiFillDelete, AiOutlinePlusCircle} from 'react-icons/ai';
 import {BsArrowDownCircle} from 'react-icons/bs';
+import {useNavigate} from 'react-router-dom';
+import {AuthContext} from '../../contexts/UserContext';
 
 const AddNotes = () => {
     const [newCategory, setNewCategory] = useState(false);
-    const [inputs, setInputs] = useState([
-        {text: "", code: ""}
-    ]);
+    const {storedCategories, loading, setLoading} = useContext(AuthContext);
+    const navigate = useNavigate();
+    const [inputs, setInputs] = useState([{text: "", code: ""}]);
 
     // New Note Handler
     const newNoteHandler = (event) => {
@@ -16,26 +18,51 @@ const AddNotes = () => {
         const heading = form.heading.value;
         const categoryObj = {category};
         const noteObj = {category, heading, inputs};
-        console.log(noteObj);
+        console.log("XXX", noteObj);
 
-        fetch('http://localhost:5000/categories', {
-            method: 'POST',
-            headers: {'content-type': 'application/json'},
-            body: JSON.stringify(categoryObj)
-        }).then((result) => {
-            console.log(result);
-            fetch('http://localhost:5000/notes', {
-                method: 'POST',
-                headers: {'content-type': 'application/json'},
-                body: JSON.stringify(noteObj)
-            }).then((result) => {
-                console.log(result);
-            }).catch(error => {
-                console.error(error.message);
-            });
-        }).catch(error => {
-            console.error(error.message);
-        });
+        if(category !== 'Select a category' && category !== "") {
+            fetch(`http://localhost:5000/categories/${category}`)
+                .then(res => res.json())
+                .then((data) => {
+                    console.log(data);
+                    // If category exists
+                    if(data.category === category) {
+                        fetch('http://localhost:5000/notes', {
+                            method: 'POST',
+                            headers: {'content-type': 'application/json'},
+                            body: JSON.stringify(noteObj)
+                        }).then(() => {
+                            alert("Data added!!");
+                            navigate("/notes");
+                        }).catch(error => {
+                            console.error(error.message);
+                        });
+                    }
+                })
+                .catch(() => {
+                    // If category doesn't exist
+                    fetch('http://localhost:5000/categories', {
+                        method: 'POST',
+                        headers: {'content-type': 'application/json'},
+                        body: JSON.stringify(categoryObj)
+                    }).then(() => {
+                        fetch('http://localhost:5000/notes', {
+                            method: 'POST',
+                            headers: {'content-type': 'application/json'},
+                            body: JSON.stringify(noteObj)
+                        }).then(() => {
+                            alert("Data added!!");
+                            form.reset();
+                            navigate("/notes");
+                            setLoading(!loading);
+                        }).catch(error => {
+                            console.error(error.message);
+                        });
+                    }).catch(error => {
+                        console.error(error.message);
+                    });
+                });
+        }
     };
 
     // handle input change
@@ -74,10 +101,12 @@ const AddNotes = () => {
                                         className="input input-bordered w-full" />
                                 </div>
                                 :
-                                <select name='category' className="select select-bordered w-full">
+                                <select name='category' className="select select-bordered w-full" defaultValue='Select a category'>
                                     <option>Select a category</option>
-                                    <option>Han Solo</option>
-                                    <option>Greedo</option>
+                                    {
+                                        storedCategories.map(category =>
+                                            <option key={category._id}>{category.category}</option>)
+                                    }
                                 </select>
                         }
                     </div>
