@@ -19,7 +19,7 @@ const Category = ({category}) => {
                     subCategories.map((subCategory) => <NavLink
                         key={subCategory._id}
                         to={`/notes/${subCategory._id}`}
-                        className={({isActive}) => isActive ? 'bg-blue-600 text-blue-50 px-2 py-1 rounded-md' : 'text-blue-600 px-2 py-1 rounded-md'}
+                        className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-1' : 'text-gray-900 px-2 py-1'}
                     >{subCategory.heading}</NavLink>)
                 }
             </div>

@@ -14,7 +14,7 @@ const NotesLayout = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="notes-drawer" className="drawer-overlay"></label>
-                    <aside className="w-full p-6 sm:w-60 bg-gray-100 text-gray-900 mt-16">
+                    <aside className="w-64 p-6 bg-gray-100 text-gray-900 mt-16">
                         <nav className="space-y-8 text-sm">
                             <div className="space-y-2">
                                 <Categories></Categories>

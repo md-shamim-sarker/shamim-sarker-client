@@ -6,6 +6,8 @@ import AddNotes from "../pages/AddNotes/AddNotes";
 import Contact from "../pages/Contact/Contact";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Home from "../pages/Home/Home";
+import Login from "../pages/Login/Login";
+import Register from "../pages/Login/Register";
 import Notes from "../pages/Notes/Notes";
 import Projects from "../pages/Projects/Projects";
 
@@ -33,6 +35,14 @@ const router = createBrowserRouter([
             {
                 path: "/add-notes",
                 element: <AddNotes></AddNotes>
+            },
+            {
+                path: "/login",
+                element: <Login></Login>
+            },
+            {
+                path: "/register",
+                element: <Register></Register>
             }
         ],
         errorElement: <ErrorPage></ErrorPage>
