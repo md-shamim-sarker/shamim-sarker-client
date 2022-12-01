@@ -1,19 +1,24 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import registration from '../../assets/registration.svg';
 import {Link} from 'react-router-dom';
+import {AuthContext} from '../../contexts/UserContext';
 
 const Register = () => {
+    const {createUser, updateUser, logOut} = useContext(AuthContext);
     const imgHostKey = process.env.REACT_APP_imgbb_key;
 
     const registerHandler = (event) => {
         event.preventDefault();
         const form = event.target;
+        const fullName = form.fullName.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        const role = form.role.value;
 
         const image = form.image.files[0];
         const formData = new FormData();
         formData.append('image', image);
-        console.log(image);
-        const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imgHostKey}`;
+        const url = `https://api.imgbb.com/1/upload?key=${imgHostKey}`;
         fetch(url, {
             method: 'POST',
             body: formData
@@ -22,12 +27,40 @@ const Register = () => {
             .then(imgData => {
                 if(imgData.success) {
                     const image = imgData.data.url;
-                    const fullName = form.fullName.value;
-                    const email = form.email.value;
-                    const password = form.password.value;
-                    const role = form.role.value;
-                    const user = {fullName, image, email, password, role};
-                    console.log(user);
+                    createUser(email, password)
+                        .then(result => {
+                            const userObj = {
+                                displayName: fullName,
+                                photoURL: image
+                            };
+                            updateUser(userObj)
+                                .then(() => {
+                                    logOut()
+                                        .then(() => {
+                                            const user = {
+                                                displayName: fullName,
+                                                email: email,
+                                                photoURL: image,
+                                                registrationDate: Date().slice(0, 24),
+                                                role: role,
+                                                isVerified: false,
+                                                isSuperAdmin: false
+                                            };
+                                            fetch('http://localhost:5000/users', {
+                                                method: 'POST',
+                                                headers: {'content-type': 'application/json'},
+                                                body: JSON.stringify(user)
+                                            })
+                                                .then(() => {
+                                                    alert("Your registration is successful!");
+                                                    form.reset();
+                                                })
+                                                .catch(err => console.log(err));
+                                        })
+                                        .catch(err => console.log(err));
+                                })
+                                .catch(err => console.log(err));
+                        }).catch(err => console.log(err));
                 }
             })
             .catch(err => console.log(err));

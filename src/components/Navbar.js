@@ -1,38 +1,58 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Link, NavLink} from 'react-router-dom';
+import {AuthContext} from '../contexts/UserContext';
 
 const menuItem = <>
-    <li><NavLink
-        to={"/"}
-        className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
-        Portfolio
-    </NavLink></li>
-    <li><NavLink
-        to={"/about"}
-        className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
-        About
-    </NavLink></li>
-    <li><NavLink
-        to={"/projects"}
-        className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
-        Projects
-    </NavLink></li>
-    <li><NavLink
-        to={"/add-notes"}
-        className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
-        Add Notes
-    </NavLink></li>
-    <li><NavLink to={"/notes"}
-        className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
-        Notes
-    </NavLink></li>
-    <li><NavLink to={"/contact"}
-        className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
-        Contact
-    </NavLink></li>
+    <li>
+        <NavLink
+            to={"/"}
+            className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
+            Portfolio
+        </NavLink>
+    </li>
+    <li>
+        <NavLink
+            to={"/about"}
+            className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
+            About
+        </NavLink>
+    </li>
+    <li>
+        <NavLink
+            to={"/projects"}
+            className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
+            Projects
+        </NavLink>
+    </li>
+    <li>
+        <NavLink
+            to={"/add-notes"}
+            className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
+            Add Notes
+        </NavLink>
+    </li>
+    <li>
+        <NavLink to={"/notes"}
+            className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
+            Notes
+        </NavLink>
+    </li>
+    <li>
+        <NavLink to={"/contact"}
+            className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
+            Contact
+        </NavLink>
+    </li>
 </>;
 
 const Navbar = () => {
+    const {user, logOut} = useContext(AuthContext);
+
+    const logOutHandler = () => {
+        logOut()
+            .then(() => {}).then(err => console.log(err));
+    };
+
     return (
         <div className="navbar bg-gray-100 fixed top-0 z-50 mb-20">
             <div className="navbar-start">
@@ -54,8 +74,18 @@ const Navbar = () => {
                     {menuItem}
                 </ul>
             </div>
+
             <div className="navbar-end">
-                <Link to={"/login"} className="btn btn-primary">Login</Link>
+                {
+                    user?.photoURL && <img src={user?.photoURL} alt="user" className='w-10 h-10 rounded-full mr-3' title={user?.displayName} />
+                }
+
+                {
+                    user?.uid
+                        ? <button onClick={logOutHandler} className='btn btn-primary'>Logout</button>
+                        : <Link to={"/login"} className="btn btn-primary">Login</Link>
+                }
+
                 {
                     window.location.pathname === '/notes' &&
                     <label htmlFor="notes-drawer" className="btn btn-ghost drawer-button lg:hidden">

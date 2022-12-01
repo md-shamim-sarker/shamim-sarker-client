@@ -5,19 +5,35 @@ import {useNavigate} from 'react-router-dom';
 import {AuthContext} from '../../contexts/UserContext';
 
 const AddNotes = () => {
+    const {user} = useContext(AuthContext);
     const [newCategory, setNewCategory] = useState(false);
     const {storedCategories, loading, setLoading} = useContext(AuthContext);
     const navigate = useNavigate();
     const [inputs, setInputs] = useState([{text: "", code: ""}]);
 
     // New Note Handler
-    const newNoteHandler = (event) => {
+    const newNoteHandler = event => {
         event.preventDefault();
         const form = event.target;
         const category = form.category.value;
         const heading = form.heading.value;
+        const userName = user.displayName;
+        const userPhoto = user.photoURL;
+        const userEmail = user.email;
+        const postDate = Date().slice(0, 24);
+        const ratings = 0;
+
         const categoryObj = {category};
-        const noteObj = {category, heading, inputs};
+        const noteObj = {
+            category,
+            heading,
+            userName,
+            userPhoto,
+            userEmail,
+            postDate,
+            ratings,
+            inputs
+        };
 
         if(category !== 'Select a category' && category !== "") {
             fetch(`http://localhost:5000/categories/${category}`)
