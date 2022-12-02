@@ -1,4 +1,5 @@
 import {createBrowserRouter} from "react-router-dom";
+import DashboardLayout from "../layouts/DashboardLayout";
 import Main from "../layouts/Main";
 import NotesLayout from "../layouts/NotesLayout";
 import About from "../pages/About/About";
@@ -33,10 +34,6 @@ const router = createBrowserRouter([
                 element: <Projects></Projects>
             },
             {
-                path: "/add-notes",
-                element: <AddNotes></AddNotes>
-            },
-            {
                 path: "/login",
                 element: <Login></Login>
             },
@@ -58,6 +55,16 @@ const router = createBrowserRouter([
             }
         ],
         errorElement: <ErrorPage></ErrorPage>
+    },
+    {
+        path: "/dashboard",
+        element: <DashboardLayout></DashboardLayout>,
+        children: [
+            {
+                path: "/dashboard/add-notes",
+                element: <AddNotes></AddNotes>
+            },
+        ]
     }
 ]);
 

@@ -103,7 +103,7 @@ const AddNotes = () => {
     };
 
     return (
-        <form onSubmit={newNoteHandler} className='w-11/12 lg:w-4/5 mx-auto mb-10 mt-28'>
+        <form onSubmit={newNoteHandler} className='w-11/12 mx-auto mb-10'>
             <h3 className='text-3xl font-bold text-center my-10'>Add New Note</h3>
             <div className='flex w-full gap-3 flex-col lg:flex-row'>
                 <div className="w-full flex gap-x-3">

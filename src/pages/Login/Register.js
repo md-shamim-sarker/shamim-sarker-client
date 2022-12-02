@@ -1,10 +1,12 @@
 import React, {useContext} from 'react';
 import registration from '../../assets/registration.svg';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {AuthContext} from '../../contexts/UserContext';
+import toast from 'react-hot-toast';
 
 const Register = () => {
     const {createUser, updateUser, logOut, addToDb} = useContext(AuthContext);
+    const navigate = useNavigate();
     const imgHostKey = process.env.REACT_APP_imgbb_key;
 
     const registerHandler = (event) => {
@@ -27,37 +29,39 @@ const Register = () => {
             .then(imgData => {
                 if(imgData.success) {
                     const image = imgData.data.url;
-                    createUser(email, password)
-                        .then(result => {
-                            const userObj = {
-                                displayName: fullName,
-                                photoURL: image
-                            };
-                            updateUser(userObj)
+                    const user = {
+                        displayName: fullName,
+                        email: email,
+                        photoURL: image,
+                        registrationDate: Date().slice(0, 24),
+                        role: role,
+                        isVerified: false,
+                        isSuperAdmin: false
+                    };
+                    const url = 'http://localhost:5000/users';
+                    addToDb(url, user)
+                        .then(() => {
+                            createUser(email, password)
                                 .then(() => {
-                                    logOut()
+                                    const userObj = {
+                                        displayName: fullName,
+                                        photoURL: image
+                                    };
+                                    updateUser(userObj)
                                         .then(() => {
-                                            const user = {
-                                                displayName: fullName,
-                                                email: email,
-                                                photoURL: image,
-                                                registrationDate: Date().slice(0, 24),
-                                                role: role,
-                                                isVerified: false,
-                                                isSuperAdmin: false
-                                            };
-                                            const url = 'http://localhost:5000/users';
-                                            addToDb(url, user)
+                                            logOut()
                                                 .then(() => {
-                                                    alert("Your registration is successful!");
-                                                    form.reset();
+                                                    toast.success("Registration Successful!", {
+                                                        position: 'bottom-center'
+                                                    });
+                                                    navigate("/login");
                                                 })
                                                 .catch(err => console.log(err));
                                         })
                                         .catch(err => console.log(err));
-                                })
-                                .catch(err => console.log(err));
-                        }).catch(err => console.log(err));
+                                }).catch(err => console.log(err));
+                        })
+                        .catch(err => console.log(err));
                 }
             })
             .catch(err => console.log(err));
@@ -118,7 +122,7 @@ const Register = () => {
                             </div>
                         </div>
                         <div className="form-control mt-6">
-                            <button type='submit' className="btn btn-primary">Login</button>
+                            <button type='submit' className="btn btn-primary">Register</button>
                         </div>
                         <div className='flex text-sm gap-x-1'>
                             <span>You already have an account? Please</span>

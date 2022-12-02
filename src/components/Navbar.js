@@ -27,13 +27,6 @@ const menuItem = <>
         </NavLink>
     </li>
     <li>
-        <NavLink
-            to={"/add-notes"}
-            className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
-            Add Notes
-        </NavLink>
-    </li>
-    <li>
         <NavLink to={"/notes"}
             className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
             Notes
@@ -43,6 +36,12 @@ const menuItem = <>
         <NavLink to={"/contact"}
             className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
             Contact
+        </NavLink>
+    </li>
+    <li>
+        <NavLink to={"/dashboard"}
+            className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
+            Dashboard
         </NavLink>
     </li>
 </>;
@@ -69,7 +68,7 @@ const Navbar = () => {
                     </label>
                     {
                         toggleMenu &&
-                        <ul onClick={() => setToggleMenu(false)} tabIndex={0} className="menu menu-compact mt-2 -ml-2 absolute shadow w-52 bg-gray-100">
+                        <ul onClick={() => setToggleMenu(false)} tabIndex={0} className="menu menu-compact mt-2 -ml-2 absolute shadow w-52 bg-gray-100 font-bold">
                             {menuItem}
                         </ul>
                     }
@@ -81,7 +80,7 @@ const Navbar = () => {
                 </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal p-0">
+                <ul className="menu menu-horizontal p-0 font-bold">
                     {menuItem}
                 </ul>
             </div>
@@ -100,6 +99,12 @@ const Navbar = () => {
                 {
                     window.location.pathname === '/notes' &&
                     <label htmlFor="notes-drawer" className="btn btn-primary ml-2 drawer-button lg:hidden">
+                        <AiOutlineMenuFold className='text-3xl'></AiOutlineMenuFold>
+                    </label>
+                }
+                {
+                    window.location.pathname === '/dashboard' &&
+                    < label htmlFor="dashboard-drawer" className="btn btn-primary ml-2 drawer-button lg:hidden">
                         <AiOutlineMenuFold className='text-3xl'></AiOutlineMenuFold>
                     </label>
                 }

@@ -4,6 +4,7 @@ import {FcGoogle} from 'react-icons/fc';
 import {BsFacebook, BsGithub} from 'react-icons/bs';
 import {Link, useNavigate} from 'react-router-dom';
 import {AuthContext} from '../../contexts/UserContext';
+import toast from 'react-hot-toast';
 
 const Login = () => {
     const {signInWithEmailPassword, signInWithGoogle, signInWithGithub, signInWithFacebook, addToDb, isUserExist} = useContext(AuthContext);
@@ -31,13 +32,19 @@ const Login = () => {
                 isUserExist(email)
                     .then(res => res.json())
                     .then(() => {
-                        alert("Login successful!");
+                        toast.success("Login Successful!", {
+                            position: 'bottom-center'
+                        });
+                        navigate("/");
                     })
                     .catch(() => {
                         const url = 'http://localhost:5000/users';
                         addToDb(url, user)
                             .then(() => {
-                                alert("Login successful!");
+                                toast.success("Login Successful!", {
+                                    position: 'bottom-center'
+                                });
+                                navigate("/");
                             })
                             .catch(err => console.log(err));
                     });
@@ -52,13 +59,19 @@ const Login = () => {
                 isUserExist(email)
                     .then(res => res.json())
                     .then(() => {
-                        alert("Login successful!");
+                        toast.success("Login Successful!", {
+                            position: 'bottom-center'
+                        });
+                        navigate("/");
                     })
                     .catch(() => {
                         const url = 'http://localhost:5000/users';
                         addToDb(url, user)
                             .then(() => {
-                                alert("Login successful!");
+                                toast.success("Login Successful!", {
+                                    position: 'bottom-center'
+                                });
+                                navigate("/");
                             })
                             .catch(err => console.log(err));
                     });
@@ -73,13 +86,19 @@ const Login = () => {
                 isUserExist(email)
                     .then(res => res.json())
                     .then(() => {
-                        alert("Login successful!");
+                        toast.success("Login Successful!", {
+                            position: 'bottom-center'
+                        });
+                        navigate("/");
                     })
                     .catch(() => {
                         const url = 'http://localhost:5000/users';
                         addToDb(url, user)
                             .then(() => {
-                                alert("Login successful!");
+                                toast.success("Login Successful!", {
+                                    position: 'bottom-center'
+                                });
+                                navigate("/");
                             })
                             .catch(err => console.log(err));
                     });
@@ -94,8 +113,10 @@ const Login = () => {
         const password = form.password.value;
 
         signInWithEmailPassword(email, password)
-            .then(result => {
-                console.log(result);
+            .then(() => {
+                toast.success("Login Successful!", {
+                    position: 'bottom-center'
+                });
                 navigate("/");
             })
             .catch(err => console.log(err));
