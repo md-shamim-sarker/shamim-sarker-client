@@ -6,10 +6,8 @@ import {Link, useNavigate} from 'react-router-dom';
 import {AuthContext} from '../../contexts/UserContext';
 
 const Login = () => {
-    const {signInWithEmailPassword, signInWithGoogle, signInWithGithub, signInWithFacebook, addToDb, user, isUserExist} = useContext(AuthContext);
+    const {signInWithEmailPassword, signInWithGoogle, signInWithGithub, signInWithFacebook, addToDb, isUserExist} = useContext(AuthContext);
     const navigate = useNavigate();
-
-    console.log("User", user);
 
     const userInfoHandler = result => {
         const socialUser = result.user;

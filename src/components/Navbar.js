@@ -1,6 +1,8 @@
 import React, {useContext} from 'react';
 import {Link, NavLink} from 'react-router-dom';
 import {AuthContext} from '../contexts/UserContext';
+import {FcReading} from 'react-icons/fc';
+import {AiOutlineClose, AiOutlineMenuFold, AiOutlineMenuUnfold} from 'react-icons/ai';
 
 const menuItem = <>
     <li>
@@ -47,6 +49,7 @@ const menuItem = <>
 
 const Navbar = () => {
     const {user, logOut} = useContext(AuthContext);
+    const {toggleMenu, setToggleMenu} = useContext(AuthContext);
 
     const logOutHandler = () => {
         logOut()
@@ -57,17 +60,25 @@ const Navbar = () => {
         <div className="navbar bg-gray-200 fixed top-0 z-50 mb-20">
             <div className="navbar-start">
                 <div className="dropdown">
+                    <label onClick={() => setToggleMenu(!toggleMenu)} tabIndex={0} className="btn btn-primary lg:hidden">
+                        {
+                            toggleMenu
+                                ? <AiOutlineClose className='text-3xl'></AiOutlineClose>
+                                : <AiOutlineMenuUnfold className='text-3xl'></AiOutlineMenuUnfold>
+                        }
+                    </label>
                     {
-                        window.location.pathname === '/notes' ||
-                        <label tabIndex={0} className="btn btn-ghost lg:hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-                        </label>
+                        toggleMenu &&
+                        <ul onClick={() => setToggleMenu(false)} tabIndex={0} className="menu menu-compact mt-2 -ml-2 absolute shadow w-52 bg-gray-100">
+                            {menuItem}
+                        </ul>
                     }
-                    <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow w-52 bg-gray-100">
-                        {menuItem}
-                    </ul>
+
                 </div>
-                <Link to={"/"} className="btn btn-primary text-xl">SHAMIM</Link>
+                <Link to={"/"} className="flex items-center gap-x-1">
+                    <FcReading className='text-5xl'></FcReading>
+                    <h2 className='hidden lg:block text-3xl font-bold text-blue-600'>SHAMIM</h2>
+                </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">
@@ -88,8 +99,8 @@ const Navbar = () => {
 
                 {
                     window.location.pathname === '/notes' &&
-                    <label htmlFor="notes-drawer" className="btn btn-ghost drawer-button lg:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                    <label htmlFor="notes-drawer" className="btn btn-primary ml-2 drawer-button lg:hidden">
+                        <AiOutlineMenuFold className='text-3xl'></AiOutlineMenuFold>
                     </label>
                 }
             </div>

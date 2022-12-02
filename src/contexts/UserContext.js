@@ -9,7 +9,7 @@ const UserContext = ({children}) => {
     const [user, setUser] = useState({});
     const [storedCategories, setStoredCategories] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [currectLocation, setCurrentLocation] = useState("/");
+    const [toggleMenu, setToggleMenu] = useState(false);
 
     // Fetching all categories
     useEffect(() => {
@@ -100,12 +100,11 @@ const UserContext = ({children}) => {
         };
     }, []);
 
+    // All info
     const authInfo = {
         storedCategories,
         loading,
         setLoading,
-        currectLocation,
-        setCurrentLocation,
         user,
         setUser,
         signInWithGoogle,
@@ -118,7 +117,9 @@ const UserContext = ({children}) => {
         updateUser,
         updateEmailId,
         addToDb,
-        isUserExist
+        isUserExist,
+        toggleMenu,
+        setToggleMenu
     };
 
     return (

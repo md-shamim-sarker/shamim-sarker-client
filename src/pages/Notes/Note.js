@@ -8,7 +8,7 @@ const Note = ({note}) => {
             <div className='flex items-center gap-2 font-bold'>
                 <p>{note.text}</p>
             </div>
-            <div className='my-2'>
+            <div className='my-20'>
                 <ReactEmbedGist
                     gist={note.code}
                     loadingFallback={<LoadingSpinner></LoadingSpinner>}

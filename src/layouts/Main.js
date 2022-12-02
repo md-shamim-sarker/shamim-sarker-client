@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Outlet} from 'react-router-dom';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
+import {AuthContext} from '../contexts/UserContext';
 
 const Main = () => {
+    const {setToggleMenu} = useContext(AuthContext);
     return (
         <div>
             <Navbar></Navbar>
-            <div className='mt-20'>
+            <div onClick={() => setToggleMenu(false)} className='mt-20'>
                 <Outlet></Outlet>
             </div>
             <Footer></Footer>
