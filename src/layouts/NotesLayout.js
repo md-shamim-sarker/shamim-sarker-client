@@ -1,5 +1,6 @@
 import React from 'react';
 import {Outlet} from 'react-router-dom';
+import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import Categories from '../pages/Categories/Categories';
 
@@ -9,8 +10,11 @@ const NotesLayout = () => {
             <Navbar></Navbar>
             <div className="drawer drawer-mobile">
                 <input id="notes-drawer" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content mt-20 ml-5">
-                    <Outlet></Outlet>
+                <div className="drawer-content mt-20">
+                    <div className='ml-5'>
+                        <Outlet></Outlet>
+                    </div>
+                    <Footer></Footer>
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="notes-drawer" className="drawer-overlay"></label>
