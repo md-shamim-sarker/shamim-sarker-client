@@ -6,10 +6,90 @@ import {Link, useNavigate} from 'react-router-dom';
 import {AuthContext} from '../../contexts/UserContext';
 
 const Login = () => {
-    const {signInWithEmailPassword} = useContext(AuthContext);
+    const {signInWithEmailPassword, signInWithGoogle, signInWithGithub, signInWithFacebook, addToDb, user, isUserExist} = useContext(AuthContext);
     const navigate = useNavigate();
 
-    const signInWithEmailPasswordHandler = (event) => {
+    console.log("User", user);
+
+    const userInfoHandler = result => {
+        const socialUser = result.user;
+        const displayName = socialUser.displayName;
+        const email = socialUser.email;
+        const photoURL = socialUser.photoURL;
+        const registrationDate = Date().slice(0, 24);
+        const role = 'reader';
+        const isVerified = false;
+        const isSuperAdmin = false;
+        const user = {displayName, email, photoURL, registrationDate, role, isVerified, isSuperAdmin};
+        return user;
+    };
+
+    // Sign in with google
+    const signInWithGoogleHandler = () => {
+        signInWithGoogle()
+            .then(result => {
+                const user = userInfoHandler(result);
+                const email = user.email;
+                isUserExist(email)
+                    .then(res => res.json())
+                    .then(() => {
+                        alert("Login successful!");
+                    })
+                    .catch(() => {
+                        const url = 'http://localhost:5000/users';
+                        addToDb(url, user)
+                            .then(() => {
+                                alert("Login successful!");
+                            })
+                            .catch(err => console.log(err));
+                    });
+            }).catch(err => console.log(err));
+    };
+    // Sign in with facebook
+    const signInWithFacebookHandler = () => {
+        signInWithFacebook()
+            .then(result => {
+                const user = userInfoHandler(result);
+                const email = user.email;
+                isUserExist(email)
+                    .then(res => res.json())
+                    .then(() => {
+                        alert("Login successful!");
+                    })
+                    .catch(() => {
+                        const url = 'http://localhost:5000/users';
+                        addToDb(url, user)
+                            .then(() => {
+                                alert("Login successful!");
+                            })
+                            .catch(err => console.log(err));
+                    });
+            }).catch(err => console.log(err));
+    };
+    // Sign in with github
+    const signInWithGithubHandler = () => {
+        signInWithGithub()
+            .then(result => {
+                const user = userInfoHandler(result);
+                const email = user.email;
+                isUserExist(email)
+                    .then(res => res.json())
+                    .then(() => {
+                        alert("Login successful!");
+                    })
+                    .catch(() => {
+                        const url = 'http://localhost:5000/users';
+                        addToDb(url, user)
+                            .then(() => {
+                                alert("Login successful!");
+                            })
+                            .catch(err => console.log(err));
+                    });
+            }).catch(err => console.log(err));
+    };
+
+    // Sign in with email and password
+    const signInWithEmailPasswordHandler = event => {
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
@@ -62,13 +142,13 @@ const Login = () => {
                         </div>
                         <div className="divider">OR</div>
                         <div className='flex gap-x-3 justify-center items-center'>
-                            <button>
+                            <button onClick={signInWithGoogleHandler}>
                                 <FcGoogle className='text-[28px]'></FcGoogle>
                             </button>
-                            <button>
+                            <button onClick={signInWithFacebookHandler}>
                                 <BsFacebook className='text-blue-600 text-2xl'></BsFacebook>
                             </button>
-                            <button>
+                            <button onClick={signInWithGithubHandler}>
                                 <BsGithub className='text-2xl'></BsGithub>
                             </button>
                         </div>

@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import {AuthContext} from '../../contexts/UserContext';
 
 const Register = () => {
-    const {createUser, updateUser, logOut} = useContext(AuthContext);
+    const {createUser, updateUser, logOut, addToDb} = useContext(AuthContext);
     const imgHostKey = process.env.REACT_APP_imgbb_key;
 
     const registerHandler = (event) => {
@@ -46,11 +46,8 @@ const Register = () => {
                                                 isVerified: false,
                                                 isSuperAdmin: false
                                             };
-                                            fetch('http://localhost:5000/users', {
-                                                method: 'POST',
-                                                headers: {'content-type': 'application/json'},
-                                                body: JSON.stringify(user)
-                                            })
+                                            const url = 'http://localhost:5000/users';
+                                            addToDb(url, user)
                                                 .then(() => {
                                                     alert("Your registration is successful!");
                                                     form.reset();

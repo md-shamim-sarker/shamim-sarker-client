@@ -22,6 +22,7 @@ const AddNotes = () => {
         const userEmail = user.email;
         const postDate = Date().slice(0, 24);
         const ratings = 0;
+        const likes = 0;
 
         const categoryObj = {category};
         const noteObj = {
@@ -32,6 +33,7 @@ const AddNotes = () => {
             userEmail,
             postDate,
             ratings,
+            likes,
             inputs
         };
 
@@ -197,7 +199,6 @@ const AddNotes = () => {
                         </div>
                     );
                 })}
-            {/* <div>{JSON.stringify(inputs)}</div> */}
         </form>
     );
 };

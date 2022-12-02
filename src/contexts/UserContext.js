@@ -11,12 +11,27 @@ const UserContext = ({children}) => {
     const [loading, setLoading] = useState(true);
     const [currectLocation, setCurrentLocation] = useState("/");
 
+    // Fetching all categories
     useEffect(() => {
         fetch('http://localhost:5000/categories')
             .then(res => res.json())
             .then(data => setStoredCategories(data))
             .catch(console.dir);
     }, [loading]);
+
+    // Add to db
+    const addToDb = (url, dataObj) => {
+        return fetch(url, {
+            method: 'POST',
+            headers: {'content-type': 'application/json'},
+            body: JSON.stringify(dataObj)
+        });
+    };
+
+    // Is User Exist
+    const isUserExist = (email) => {
+        return fetch(`http://localhost:5000/users/${email}`);
+    };
 
     // All Provider
     const googleProvider = new GoogleAuthProvider();
@@ -101,7 +116,9 @@ const UserContext = ({children}) => {
         logOut,
         createUser,
         updateUser,
-        updateEmailId
+        updateEmailId,
+        addToDb,
+        isUserExist
     };
 
     return (
