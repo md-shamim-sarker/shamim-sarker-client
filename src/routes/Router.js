@@ -4,6 +4,7 @@ import Main from "../layouts/Main";
 import NotesLayout from "../layouts/NotesLayout";
 import About from "../pages/About/About";
 import AddNotes from "../pages/AddNotes/AddNotes";
+import AddNotesQuill from "../pages/AddNotes/AddNotesQuill";
 import Contact from "../pages/Contact/Contact";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Home from "../pages/Home/Home";
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/add-notes",
                 element: <AddNotes></AddNotes>
+            },
+            {
+                path: "/dashboard/add-notes-quill",
+                element: <AddNotesQuill></AddNotesQuill>
             },
         ]
     }

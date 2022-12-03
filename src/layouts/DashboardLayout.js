@@ -10,7 +10,7 @@ const DashboardLayout = () => {
             <div className="drawer drawer-mobile">
                 <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content mt-20">
-                    <div className='ml-5'>
+                    <div className='ml-2'>
                         <Outlet></Outlet>
                     </div>
                     <Footer></Footer>
@@ -34,7 +34,9 @@ const DashboardLayout = () => {
 
                                     <NavLink to={"/"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>All Categories</NavLink>
 
-                                    <NavLink to={"/dashboard/add-notes"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>Add Notes</NavLink>
+                                    <NavLink to={"/dashboard/add-notes"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>Add Notes Github Gist</NavLink>
+
+                                    <NavLink to={"/dashboard/add-notes-quill"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>Add Notes Copy Paste</NavLink>
 
                                     <NavLink to={"/"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>My Notes</NavLink>
 

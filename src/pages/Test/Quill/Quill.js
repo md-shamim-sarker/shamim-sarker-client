@@ -1,21 +1,18 @@
 import React, {useState} from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import parse from 'html-react-parser';
 
 const Quill = () => {
-    const [value, setValue] = useState('');
-
-    // Fetching all categories
-    /* useEffect(() => {
-        fetch('http://localhost:5000/notes/id/6389a633aac6095d97ddc454')
-            .then(res => res.json())
-            .then(data => setNote(data))
-            .catch(console.dir);
-    }, []); */
+    const [text, setText] = useState('');
+    const [code, setCode] = useState('');
+    const arr = [{text, code}];
 
     return <>
-        <ReactQuill theme="snow" value={value} onChange={setValue} />
-        <div>{JSON.stringify(value)}</div>
+        <ReactQuill theme="snow" value={text} onChange={setText} />
+        <ReactQuill theme="snow" value={code} onChange={setCode} />
+
+        <div className='my-10'>{parse(text)}</div>
     </>;
 };
 

@@ -92,8 +92,8 @@ const Navbar = () => {
 
                 {
                     user?.uid
-                        ? <button onClick={logOutHandler} className='btn btn-primary'>Logout</button>
-                        : <Link to={"/login"} className="btn btn-primary">Login</Link>
+                        ? <button onClick={logOutHandler} className='btn btn-primary rounded-none'>Logout</button>
+                        : <Link to={"/login"} className="btn btn-primary rounded-none">Login</Link>
                 }
 
                 {

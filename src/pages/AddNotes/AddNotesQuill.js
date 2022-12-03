@@ -1,16 +1,16 @@
 import React, {useContext, useState} from 'react';
 import {AiOutlinePlusCircle} from 'react-icons/ai';
 import {BsArrowDownCircle} from 'react-icons/bs';
-import {RiDeleteBin6Line} from 'react-icons/ri';
+import ReactQuill from 'react-quill';
 import {useNavigate} from 'react-router-dom';
 import {AuthContext} from '../../contexts/UserContext';
 
-const AddNotes = () => {
+const AddNotesQuill = () => {
     const {user} = useContext(AuthContext);
     const [newCategory, setNewCategory] = useState(false);
     const {storedCategories, loading, setLoading} = useContext(AuthContext);
     const navigate = useNavigate();
-    const [inputs, setInputs] = useState([{text: "", code: "", isGist: true}]);
+    const [code, setCode] = useState('');
 
     // New Note Handler
     const newNoteHandler = event => {
@@ -18,14 +18,18 @@ const AddNotes = () => {
         const form = event.target;
         const category = form.category.value;
         const heading = form.heading.value;
+        const text = form.text.value;
         const userName = user.displayName;
         const userPhoto = user.photoURL;
         const userEmail = user.email;
         const postDate = Date().slice(0, 24);
         const ratings = 0;
         const likes = 0;
+        const isGist = false;
+        const inputs = [{text, code, isGist}];
 
         const categoryObj = {category};
+
         const noteObj = {
             category,
             heading,
@@ -43,6 +47,7 @@ const AddNotes = () => {
                 .then(res => res.json())
                 .then((data) => {
                     console.log(data);
+
                     // If category exists
                     if(data.category === category) {
                         fetch('http://localhost:5000/notes', {
@@ -83,30 +88,10 @@ const AddNotes = () => {
         }
     };
 
-    // handle input change
-    const handleInputChange = (e, index) => {
-        const {name, value} = e.target;
-        const list = [...inputs];
-        list[index][name] = value;
-        setInputs(list);
-    };
-
-    // handle click event of the Remove button
-    const handleRemoveClick = index => {
-        const list = [...inputs];
-        list.splice(index, 1);
-        setInputs(list);
-    };
-
-    // handle click event of the Add button
-    const handleAddClick = () => {
-        setInputs([...inputs, {text: "", code: ""}]);
-    };
-
     return (
         <form onSubmit={newNoteHandler} className='w-11/12 mx-auto mb-10'>
             <h3 className='text-3xl font-bold text-center my-10'>Add New Note</h3>
-            <div className='flex w-full gap-3 flex-col lg:flex-row'>
+            <div className='flex w-full gap-y-3 flex-col'>
                 <div className="w-full flex">
                     <div className='w-full'>
                         {
@@ -116,10 +101,10 @@ const AddNotes = () => {
                                         type="text"
                                         name="category"
                                         placeholder="Enter a new category"
-                                        className="input input-bordered w-full rounded-none focus:outline-none" />
+                                        className="input input-bordered w-full rounded-none" />
                                 </div>
                                 :
-                                <select name='category' className="select select-bordered w-full rounded-none focus:outline-none" defaultValue='Select a category'>
+                                <select name='category' className="select select-bordered w-full rounded-none focus:outline-none text-lg" defaultValue='Select a category'>
                                     <option>Select a category</option>
                                     {
                                         storedCategories.map(category =>
@@ -130,7 +115,7 @@ const AddNotes = () => {
                     </div>
                     <button
                         onClick={() => setNewCategory(!newCategory)}
-                        className="btn btn-primary rounded-none focus:outline-none">
+                        className="btn btn-primary rounded-none">
                         {
                             newCategory
                                 ? <BsArrowDownCircle title='Go back to select option' className='text-3xl'></BsArrowDownCircle>
@@ -145,62 +130,15 @@ const AddNotes = () => {
                         type="text"
                         name="heading"
                         placeholder="Enter Heading"
-                        className="input input-bordered w-full rounded-none focus:outline-none" />
+                        className="input input-bordered w-full rounded-none focus:outline-none text-lg" />
                 </div>
+
+                <textarea name='text' className="textarea textarea-bordered w-full rounded-none focus:outline-none text-lg" placeholder="Write something about this note....."></textarea>
+                <ReactQuill theme="snow" value={code} onChange={setCode} />
+                <button type='submit' className='btn btn-primary rounded-none'>Submit</button>
             </div>
-
-            {
-                inputs.map((x, i) => {
-                    return (
-                        <div key={i}>
-                            <div className='flex flex-col lg:flex-row gap-x-3 relative'>
-                                <div className="form-control w-full">
-                                    <input
-                                        name="text"
-                                        placeholder="Enter Some Text"
-                                        value={x.text}
-                                        onChange={e => handleInputChange(e, i)}
-                                        className="input input-bordered w-full mt-3 rounded-none focus:outline-none" />
-                                </div>
-
-                                <div className="form-control w-full">
-                                    <input
-                                        name="code"
-                                        placeholder="Enter Gist ID"
-                                        value={x.code}
-                                        onChange={e => handleInputChange(e, i)}
-                                        className="input input-bordered w-full mt-3 rounded-none focus:outline-none" />
-                                </div>
-                                <div className='absolute right-0 bottom-0'>
-                                    <div className='flex mt-3'>
-                                        {
-                                            inputs.length !== 1 &&
-                                            <button
-                                                onClick={() => handleRemoveClick(i)}
-                                                className="btn btn-primary rounded-none">
-                                                <RiDeleteBin6Line className='text-2xl'></RiDeleteBin6Line>
-                                            </button>
-                                        }
-                                    </div>
-                                </div>
-                            </div>
-                            {
-                                inputs.length - 1 === i &&
-                                <div className="divider mt-6">
-                                    <button onClick={handleAddClick} className="btn btn-primary rounded-none btn-sm">
-                                        <AiOutlinePlusCircle className='text-3xl'></AiOutlinePlusCircle>
-                                    </button>
-                                </div>
-                            }
-                            {
-                                inputs.length - 1 === i &&
-                                <button type='submit' className='btn btn-primary rounded-none focus:outline-none'>Submit</button>
-                            }
-                        </div>
-                    );
-                })}
         </form>
     );
 };
 
-export default AddNotes;
+export default AddNotesQuill;
