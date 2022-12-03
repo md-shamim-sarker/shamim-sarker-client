@@ -9,7 +9,7 @@ const Main = () => {
     return (
         <div>
             <Navbar></Navbar>
-            <div onClick={() => setToggleMenu(false)} className='mt-20'>
+            <div onClick={() => setToggleMenu(false)} className='mt-16'>
                 <Outlet></Outlet>
             </div>
             <Footer></Footer>

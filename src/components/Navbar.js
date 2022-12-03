@@ -33,6 +33,12 @@ const menuItem = <>
         </NavLink>
     </li>
     <li>
+        <NavLink to={"/showQuestions"}
+            className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
+            Interviews
+        </NavLink>
+    </li>
+    <li>
         <NavLink to={"/contact"}
             className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
             Contact

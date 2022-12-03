@@ -8,6 +8,8 @@ import AddNotesQuill from "../pages/AddNotes/AddNotesQuill";
 import Contact from "../pages/Contact/Contact";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Home from "../pages/Home/Home";
+import AddQuestions from "../pages/Interviews/AddQuestions/AddQuestions";
+import ShowQuestions from "../pages/Interviews/ShowQuestions/ShowQuestions";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Login/Register";
 import Notes from "../pages/Notes/Notes";
@@ -41,6 +43,10 @@ const router = createBrowserRouter([
             {
                 path: "/register",
                 element: <Register></Register>
+            },
+            {
+                path: "/showQuestions",
+                element: <ShowQuestions></ShowQuestions>
             }
         ],
         errorElement: <ErrorPage></ErrorPage>
@@ -68,6 +74,10 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/add-notes-quill",
                 element: <AddNotesQuill></AddNotesQuill>
+            },
+            {
+                path: "/dashboard/add-questions",
+                element: <AddQuestions></AddQuestions>
             },
         ]
     }
