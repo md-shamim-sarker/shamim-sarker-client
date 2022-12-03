@@ -10,7 +10,7 @@ const Home = () => {
                 <div className="hero" style={{backgroundImage: `url(${banner})`}}>
                     <div className="hero-overlay bg-opacity-70"></div>
                     <div className="hero-content text-center text-neutral-content">
-                        <div className="max-w-md my-20">
+                        <div className="max-w-md my-10 lg:my-20">
                             <h1 className="mb-3 text-4xl font-bold">MD. SHAMIM SARKER</h1>
                             <h2 className="mb-5 text-3xl font-bold">Web Developer</h2>
                             <p className="mb-5">There is no end to good in the developing sector. Improvement is possible even in the best work. I always try to do better than before. For me it's an ongoing process. I always try to keep myself updated with new technologies.</p>
@@ -21,13 +21,13 @@ const Home = () => {
             </div>
 
             {/* Resume part */}
-            <div className='w-5/6 mx-auto border my-10 p-16 flex flex-col gap-y-3'>
-                <div className='flex justify-between'>
+            <div className='w-full lg:w-5/6 mx-auto border my-10 p-4 lg:p-16 flex flex-col gap-3'>
+                <div className='flex flex-col lg:flex-row items-start lg:justify-between'>
                     <div>
                         <h1 className='text-3xl font-bold'>MD. SHAMIM SARKER</h1>
                         <h2 className='text-2xl font-bold'>Front-End Developer</h2>
                     </div>
-                    <div className='flex flex-col items-end'>
+                    <div className='flex flex-col items-start lg:items-end'>
                         <span><strong>Phone: </strong>+8801723795366</span>
                         <span>shamim.sarker.2023@gmail.com</span>
                         <span><strong>Address:</strong> Dhaka, Bangladesh</span>
@@ -55,14 +55,33 @@ const Home = () => {
                 <div>
                     <h2 className='bg-gray-300 border-b-2 border-black text-lg font-bold pl-1'>PROJECTS</h2>
                     <div className='border-b-2 border-black mb-2'>
-                        <div className='flex justify-between'>
+                        <div className='flex justify-between flex-col lg:flex-row'>
                             <span>
-                                <strong><Link to={"/"}>Schooling.com</Link></strong> (Educational Web Application)
+                                <strong><Link to={"https://dress-recycle.web.app/"}>Dress Recycle</Link></strong> (Old Dress Selling Web Application)
                             </span>
                             <span>
-                                <Link to={"/"} className="font-bold text-blue-600">Live Site // </Link>
-                                <Link to={"/"} className="font-bold text-blue-600">Client-Side Code // </Link>
-                                <Link to={"/"} className="font-bold text-blue-600">Server-Side Code</Link>
+                                <Link to={"https://dress-recycle.web.app/"} className="font-bold text-blue-600">Live Site // </Link>
+                                <Link to={"https://github.com/md-shamim-sarker/dress-recycle-client"} className="font-bold text-blue-600">Client-Side Code // </Link>
+                                <Link to={"https://github.com/md-shamim-sarker/dress-recycle-server"} className="font-bold text-blue-600">Server-Side Code</Link>
+                            </span>
+                        </div>
+                        <h2 className='font-bold'>Key Features</h2>
+                        <ul className='ml-12 list-disc'>
+                            <li>Four types of user role (Super Admin, Admin, Seller and Buyer).</li>
+                            <li>Dashboard and payment gateway.</li>
+                            <li>Use JWT to ensure security.</li>
+                        </ul>
+                        <p><strong>Technologies: </strong>React, Tailwind CSS, Node.js, Express.js, MongoDB, JWT, Stripe, Firebase, Vercel etc.</p>
+                    </div>
+                    <div className='border-b-2 border-black mb-2'>
+                        <div className='flex justify-between flex-col lg:flex-row'>
+                            <span>
+                                <strong><Link to={"https://creative-construction-3a070.web.app/"}>Creative Construction</Link></strong> (Construction Service Feedback Web Application)
+                            </span>
+                            <span>
+                                <Link to={"https://creative-construction-3a070.web.app/"} className="font-bold text-blue-600">Live Site // </Link>
+                                <Link to={"https://github.com/md-shamim-sarker/creative-construction-client"} className="font-bold text-blue-600">Client-Side Code // </Link>
+                                <Link to={"https://github.com/md-shamim-sarker/creative-construction-server"} className="font-bold text-blue-600">Server-Side Code</Link>
                             </span>
                         </div>
                         <h2 className='font-bold'>Key Features</h2>
@@ -73,15 +92,15 @@ const Home = () => {
                         </ul>
                         <p><strong>Technologies: </strong>React, Tailwind CSS, Rsuite, Node.js, Express.js, Firebase, Vercel etc.</p>
                     </div>
-                    <div className='border-b-2 border-black mb-2'>
-                        <div className='flex justify-between'>
+                    <div>
+                        <div className='flex justify-between flex-col lg:flex-row'>
                             <span>
-                                <strong><Link to={"/"}>Schooling.com</Link></strong> (Educational Web Application)
+                                <strong><Link to={"https://schooling-12a8c.web.app/"}>Schooling.com</Link></strong> (Educational Web Application)
                             </span>
                             <span>
-                                <Link to={"/"} className="font-bold text-blue-600">Live Site // </Link>
-                                <Link to={"/"} className="font-bold text-blue-600">Client-Side Code // </Link>
-                                <Link to={"/"} className="font-bold text-blue-600">Server-Side Code</Link>
+                                <Link to={"https://schooling-12a8c.web.app/"} className="font-bold text-blue-600">Live Site // </Link>
+                                <Link to={"https://github.com/md-shamim-sarker/schooling-client"} className="font-bold text-blue-600">Client-Side Code // </Link>
+                                <Link to={"https://github.com/md-shamim-sarker/schooling-server"} className="font-bold text-blue-600">Server-Side Code</Link>
                             </span>
                         </div>
                         <h2 className='font-bold'>Key Features</h2>
@@ -91,25 +110,6 @@ const Home = () => {
                             <li>Users can update and delete his/her feedback.</li>
                         </ul>
                         <p><strong>Technologies: </strong>React, Tailwind CSS, Node.js, Express.js, MongoDB, Firebase, Vercel etc.</p>
-                    </div>
-                    <div>
-                        <div className='flex justify-between'>
-                            <span>
-                                <strong><Link to={"/"}>Dress Recycle</Link></strong> (Old Dress Selling Web Application)
-                            </span>
-                            <span>
-                                <Link to={"/"} className="font-bold text-blue-600">Live Site // </Link>
-                                <Link to={"/"} className="font-bold text-blue-600">Client-Side Code // </Link>
-                                <Link to={"/"} className="font-bold text-blue-600">Server-Side Code</Link>
-                            </span>
-                        </div>
-                        <h2 className='font-bold'>Key Features</h2>
-                        <ul className='ml-12 list-disc'>
-                            <li>Four types of user role (Super Admin, Admin, Seller and Buyer).</li>
-                            <li>Dashboard and payment gateway.</li>
-                            <li>Use JWT to ensure security.</li>
-                        </ul>
-                        <p><strong>Technologies: </strong>React, Tailwind CSS, Node.js, Express.js, MongoDB, JWT, Stripe, Firebase, Vercel etc.</p>
                     </div>
                 </div>
                 <div>
