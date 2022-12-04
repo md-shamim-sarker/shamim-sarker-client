@@ -5,7 +5,7 @@ import User from './User';
 
 const Users = () => {
     const [userDb, setUserDb] = useState([]);
-    const {loading, setLoading} = useContext(AuthContext);
+    const {user, loading, setLoading} = useContext(AuthContext);
 
     // Fetching all users from db
     useEffect(() => {
@@ -58,9 +58,14 @@ const Users = () => {
     };
 
     // Remove User
-    const removeUserHandler = user => {
-        fetch(`http://localhost:5000/users/remove-user/${user._id}`, {
-            method: 'PUT'
+    const removeUserHandler = usr => {
+        const complainerName = user.displayName;
+        const complainerEmail = user.email;
+        const complainer = {complainerName, complainerEmail};
+        fetch(`http://localhost:5000/users/remove-user/${usr._id}`, {
+            method: 'PUT',
+            headers: {'content-type': 'application/json'},
+            body: JSON.stringify(complainer)
         }).then(() => {
             toast.success('Remove User Success!', {position: 'bottom-center'});
             setLoading(!loading);
