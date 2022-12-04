@@ -38,6 +38,8 @@ const DashboardLayout = () => {
 
                                     <NavLink to={"/dashboard/add-notes-quill"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>Add Notes Copy Paste</NavLink>
 
+                                    <NavLink to={"/dashboard/add-notes-interview"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>Add Interview Questions</NavLink>
+
                                     <NavLink to={"/"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>My Notes</NavLink>
 
                                     <NavLink to={"/"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>All Notes</NavLink>

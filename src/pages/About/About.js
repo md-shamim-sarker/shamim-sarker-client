@@ -1,9 +1,10 @@
 import React from 'react';
+import Quill from '../Test/Quill/Quill';
 
 const About = () => {
     return (
         <div>
-            About page
+            <Quill></Quill>
         </div>
     );
 };

@@ -1,16 +1,14 @@
 import React, {useContext, useState} from 'react';
 import {AiOutlinePlusCircle} from 'react-icons/ai';
 import {BsArrowDownCircle} from 'react-icons/bs';
-import ReactQuill from 'react-quill';
 import {useNavigate} from 'react-router-dom';
 import {AuthContext} from '../../contexts/UserContext';
 
-const AddNotesQuill = () => {
+const AddNotesGist = () => {
     const {user} = useContext(AuthContext);
     const [newCategory, setNewCategory] = useState(false);
     const {storedCategories, loading, setLoading} = useContext(AuthContext);
     const navigate = useNavigate();
-    const [code, setCode] = useState('');
 
     // New Note Handler
     const newNoteHandler = event => {
@@ -19,7 +17,8 @@ const AddNotesQuill = () => {
         const category = form.category.value;
         const heading = form.heading.value;
         const intro = form.intro.value;
-        const type = 'quill';
+        const code = form.code.value;
+        const type = 'gist';
         const userName = user.displayName;
         const userPhoto = user.photoURL;
         const userEmail = user.email;
@@ -46,8 +45,6 @@ const AddNotesQuill = () => {
             fetch(`http://localhost:5000/categories/${category}`)
                 .then(res => res.json())
                 .then((data) => {
-                    console.log(data);
-
                     // If category exists
                     if(data.category === category) {
                         fetch('http://localhost:5000/notes', {
@@ -91,7 +88,7 @@ const AddNotesQuill = () => {
     return (
         <form onSubmit={newNoteHandler} className='w-11/12 mx-auto mb-10'>
             <h3 className='text-3xl font-bold text-center my-10'>Add New Note</h3>
-            <div className='flex w-full gap-y-3 flex-col'>
+            <div className='flex w-full flex-col gap-y-3'>
                 <div className="w-full flex">
                     <div className='w-full'>
                         {
@@ -101,7 +98,7 @@ const AddNotesQuill = () => {
                                         type="text"
                                         name="category"
                                         placeholder="Enter a new category"
-                                        className="input input-bordered w-full rounded-none focus:outline-none" />
+                                        className="input input-bordered w-full rounded-none focus:outline-none text-lg" />
                                 </div>
                                 :
                                 <select name='category' className="select select-bordered w-full rounded-none focus:outline-none text-lg" defaultValue='Select a category'>
@@ -115,7 +112,7 @@ const AddNotesQuill = () => {
                     </div>
                     <button
                         onClick={() => setNewCategory(!newCategory)}
-                        className="btn btn-primary rounded-none">
+                        className="btn btn-primary rounded-none focus:outline-none">
                         {
                             newCategory
                                 ? <BsArrowDownCircle title='Go back to select option' className='text-3xl'></BsArrowDownCircle>
@@ -132,14 +129,22 @@ const AddNotesQuill = () => {
                         className="input input-bordered w-full rounded-none focus:outline-none text-lg" />
                 </div>
 
-                <textarea name='intro' className="textarea textarea-bordered w-full rounded-none focus:outline-none text-lg" placeholder="Write something about this note....."></textarea>
+                <div className="form-control w-full">
+                    <textarea name='intro' className="textarea textarea-bordered w-full rounded-none focus:outline-none text-lg" placeholder="Write something about this note....."></textarea>
+                </div>
 
-                <ReactQuill theme="snow" value={code} onChange={setCode} />
+                <div className="form-control w-full">
+                    <input
+                        name="code"
+                        placeholder="Enter Gist ID"
+                        className="input input-bordered w-full rounded-none focus:outline-none text-lg" />
+                </div>
 
-                <button type='submit' className='btn btn-primary rounded-none'>Submit</button>
+                <button type='submit' className='btn btn-primary rounded-none focus:outline-none'>Submit</button>
+
             </div>
         </form>
     );
 };
 
-export default AddNotesQuill;
+export default AddNotesGist;

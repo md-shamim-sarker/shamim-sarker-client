@@ -5,12 +5,12 @@ import ReactQuill from 'react-quill';
 import {useNavigate} from 'react-router-dom';
 import {AuthContext} from '../../contexts/UserContext';
 
-const AddNotesQuill = () => {
+const AddNotesInterview = () => {
     const {user} = useContext(AuthContext);
     const [newCategory, setNewCategory] = useState(false);
-    const {storedCategories, loading, setLoading} = useContext(AuthContext);
+    const {interviewCategories, loading, setLoading} = useContext(AuthContext);
     const navigate = useNavigate();
-    const [code, setCode] = useState('');
+    const [note, setNote] = useState('');
 
     // New Note Handler
     const newNoteHandler = event => {
@@ -18,8 +18,7 @@ const AddNotesQuill = () => {
         const form = event.target;
         const category = form.category.value;
         const heading = form.heading.value;
-        const intro = form.intro.value;
-        const type = 'quill';
+        const type = 'interview';
         const userName = user.displayName;
         const userPhoto = user.photoURL;
         const userEmail = user.email;
@@ -37,26 +36,25 @@ const AddNotesQuill = () => {
             postDate,
             ratings,
             likes,
-            intro,
-            code,
+            note,
             type
         };
 
         if(category !== 'Select a category' && category !== "") {
-            fetch(`http://localhost:5000/categories/${category}`)
+            fetch(`http://localhost:5000/interviewCategories/${category}`)
                 .then(res => res.json())
                 .then((data) => {
                     console.log(data);
 
                     // If category exists
                     if(data.category === category) {
-                        fetch('http://localhost:5000/notes', {
+                        fetch('http://localhost:5000/questions', {
                             method: 'POST',
                             headers: {'content-type': 'application/json'},
                             body: JSON.stringify(noteObj)
                         }).then(() => {
                             alert("Data added!!");
-                            navigate("/notes");
+                            // navigate("/notes");
                         }).catch(error => {
                             console.error(error.message);
                         });
@@ -64,19 +62,19 @@ const AddNotesQuill = () => {
                 })
                 .catch(() => {
                     // If category doesn't exist
-                    fetch('http://localhost:5000/categories', {
+                    fetch('http://localhost:5000/interviewCategories', {
                         method: 'POST',
                         headers: {'content-type': 'application/json'},
                         body: JSON.stringify(categoryObj)
                     }).then(() => {
-                        fetch('http://localhost:5000/notes', {
+                        fetch('http://localhost:5000/questions', {
                             method: 'POST',
                             headers: {'content-type': 'application/json'},
                             body: JSON.stringify(noteObj)
                         }).then(() => {
                             alert("Data added!!");
                             form.reset();
-                            navigate("/notes");
+                            // navigate("/notes");
                             setLoading(!loading);
                         }).catch(error => {
                             console.error(error.message);
@@ -90,7 +88,7 @@ const AddNotesQuill = () => {
 
     return (
         <form onSubmit={newNoteHandler} className='w-11/12 mx-auto mb-10'>
-            <h3 className='text-3xl font-bold text-center my-10'>Add New Note</h3>
+            <h3 className='text-3xl font-bold text-center my-10'>Add Interview Questions and Answers</h3>
             <div className='flex w-full gap-y-3 flex-col'>
                 <div className="w-full flex">
                     <div className='w-full'>
@@ -107,7 +105,7 @@ const AddNotesQuill = () => {
                                 <select name='category' className="select select-bordered w-full rounded-none focus:outline-none text-lg" defaultValue='Select a category'>
                                     <option>Select a category</option>
                                     {
-                                        storedCategories.map(category =>
+                                        interviewCategories.map(category =>
                                             <option key={category._id}>{category.category}</option>)
                                     }
                                 </select>
@@ -132,9 +130,9 @@ const AddNotesQuill = () => {
                         className="input input-bordered w-full rounded-none focus:outline-none text-lg" />
                 </div>
 
-                <textarea name='intro' className="textarea textarea-bordered w-full rounded-none focus:outline-none text-lg" placeholder="Write something about this note....."></textarea>
-
-                <ReactQuill theme="snow" value={code} onChange={setCode} />
+                <div className='text-lg'>
+                    <ReactQuill theme="snow" value={note} onChange={setNote} />
+                </div>
 
                 <button type='submit' className='btn btn-primary rounded-none'>Submit</button>
             </div>
@@ -142,4 +140,4 @@ const AddNotesQuill = () => {
     );
 };
 
-export default AddNotesQuill;
+export default AddNotesInterview;

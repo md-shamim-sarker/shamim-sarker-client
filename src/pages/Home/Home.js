@@ -8,13 +8,13 @@ const Home = () => {
             {/* Banner part */}
             <div className='w-full'>
                 <div className="hero" style={{backgroundImage: `url(${banner})`}}>
-                    <div className="hero-overlay bg-opacity-70"></div>
-                    <div className="hero-content text-center text-neutral-content">
-                        <div className="max-w-md my-10 lg:my-20">
+                    <div className="hero-overlay bg-opacity-50 bg-gradient-to-t from-black"></div>
+                    <div className="hero-content text-center text-neutral-content h-screen">
+                        <div className="max-w-md">
                             <h1 className="mb-3 text-4xl font-bold">MD. SHAMIM SARKER</h1>
                             <h2 className="mb-5 text-3xl font-bold">Web Developer</h2>
                             <p className="mb-5">There is no end to good in the developing sector. Improvement is possible even in the best work. I always try to do better than before. For me it's an ongoing process. I always try to keep myself updated with new technologies.</p>
-                            <button className="btn btn-primary">Get Started</button>
+                            <button className="btn btn-primary rounded-none">See My Projects</button>
                         </div>
                     </div>
                 </div>
@@ -57,12 +57,12 @@ const Home = () => {
                     <div className='border-b-2 border-black mb-2'>
                         <div className='flex justify-between flex-col lg:flex-row'>
                             <span>
-                                <strong><Link to={"https://dress-recycle.web.app/"}>Dress Recycle</Link></strong> (Old Dress Selling Web Application)
+                                <strong><a href="https://dress-recycle.web.app">Dress Recycle</a></strong> (Old Dress Selling Web Application)
                             </span>
                             <span>
-                                <Link to={"https://dress-recycle.web.app/"} className="font-bold text-blue-600">Live Site // </Link>
-                                <Link to={"https://github.com/md-shamim-sarker/dress-recycle-client"} className="font-bold text-blue-600">Client-Side Code // </Link>
-                                <Link to={"https://github.com/md-shamim-sarker/dress-recycle-server"} className="font-bold text-blue-600">Server-Side Code</Link>
+                                <a href="https://dress-recycle.web.app" className="font-bold text-blue-600">Live Site // </a>
+                                <a href="https://github.com/md-shamim-sarker/dress-recycle-client" className="font-bold text-blue-600">Client-Side Code // </a>
+                                <a href="https://github.com/md-shamim-sarker/dress-recycle-server" className="font-bold text-blue-600">Server-Side Code</a>
                             </span>
                         </div>
                         <h2 className='font-bold'>Key Features</h2>
@@ -76,12 +76,12 @@ const Home = () => {
                     <div className='border-b-2 border-black mb-2'>
                         <div className='flex justify-between flex-col lg:flex-row'>
                             <span>
-                                <strong><Link to={"https://creative-construction-3a070.web.app/"}>Creative Construction</Link></strong> (Construction Service Feedback Web Application)
+                                <strong><a href="https://creative-construction-3a070.web.app/">Creative Construction</a></strong> (Construction Service Feedback Web Application)
                             </span>
                             <span>
-                                <Link to={"https://creative-construction-3a070.web.app/"} className="font-bold text-blue-600">Live Site // </Link>
-                                <Link to={"https://github.com/md-shamim-sarker/creative-construction-client"} className="font-bold text-blue-600">Client-Side Code // </Link>
-                                <Link to={"https://github.com/md-shamim-sarker/creative-construction-server"} className="font-bold text-blue-600">Server-Side Code</Link>
+                                <a href="https://creative-construction-3a070.web.app/" className="font-bold text-blue-600">Live Site // </a>
+                                <a href="https://github.com/md-shamim-sarker/creative-construction-client" className="font-bold text-blue-600">Client-Side Code // </a>
+                                <a href="https://github.com/md-shamim-sarker/creative-construction-server" className="font-bold text-blue-600">Server-Side Code</a>
                             </span>
                         </div>
                         <h2 className='font-bold'>Key Features</h2>
@@ -95,12 +95,12 @@ const Home = () => {
                     <div>
                         <div className='flex justify-between flex-col lg:flex-row'>
                             <span>
-                                <strong><Link to={"https://schooling-12a8c.web.app/"}>Schooling.com</Link></strong> (Educational Web Application)
+                                <strong><a href="https://schooling-12a8c.web.app/">Schooling.com</a></strong> (Educational Web Application)
                             </span>
                             <span>
-                                <Link to={"https://schooling-12a8c.web.app/"} className="font-bold text-blue-600">Live Site // </Link>
-                                <Link to={"https://github.com/md-shamim-sarker/schooling-client"} className="font-bold text-blue-600">Client-Side Code // </Link>
-                                <Link to={"https://github.com/md-shamim-sarker/schooling-server"} className="font-bold text-blue-600">Server-Side Code</Link>
+                                <a href="https://schooling-12a8c.web.app/" className="font-bold text-blue-600">Live Site // </a>
+                                <a href="https://github.com/md-shamim-sarker/schooling-client" className="font-bold text-blue-600">Client-Side Code // </a>
+                                <a href="https://github.com/md-shamim-sarker/schooling-server" className="font-bold text-blue-600">Server-Side Code</a>
                             </span>
                         </div>
                         <h2 className='font-bold'>Key Features</h2>
@@ -131,6 +131,9 @@ const Home = () => {
                         <li>Bengali (Native Language), English (Intermediate)</li>
                     </ul>
                 </div>
+            </div>
+            <div className='w-full flex justify-center'>
+                <a href='Md_Shamim_Sarker_Resume.pdf' className="btn btn-primary rounded-none mb-10" download>Download My Resume</a>
             </div>
         </>
     );

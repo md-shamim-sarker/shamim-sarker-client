@@ -8,6 +8,7 @@ const auth = getAuth(app);
 const UserContext = ({children}) => {
     const [user, setUser] = useState({});
     const [storedCategories, setStoredCategories] = useState([]);
+    const [interviewCategories, setInterviewCategories] = useState([]);
     const [loading, setLoading] = useState(true);
     const [toggleMenu, setToggleMenu] = useState(false);
 
@@ -16,6 +17,14 @@ const UserContext = ({children}) => {
         fetch('http://localhost:5000/categories')
             .then(res => res.json())
             .then(data => setStoredCategories(data))
+            .catch(console.dir);
+    }, [loading]);
+
+    // Fetching all interview categories
+    useEffect(() => {
+        fetch('http://localhost:5000/interviewCategories')
+            .then(res => res.json())
+            .then(data => setInterviewCategories(data))
             .catch(console.dir);
     }, [loading]);
 
@@ -102,24 +111,25 @@ const UserContext = ({children}) => {
 
     // All info
     const authInfo = {
-        storedCategories,
-        loading,
-        setLoading,
         user,
+        logOut,
         setUser,
+        addToDb,
+        loading,
+        createUser,
+        toggleMenu,
+        updateUser,
+        setLoading,
+        isUserExist,
+        updateEmailId,
+        setToggleMenu,
         signInWithGoogle,
         signInWithGithub,
+        storedCategories,
         signInWithFacebook,
+        interviewCategories,
         signInWithEmailPassword,
-        sendUserEmailVerification,
-        logOut,
-        createUser,
-        updateUser,
-        updateEmailId,
-        addToDb,
-        isUserExist,
-        toggleMenu,
-        setToggleMenu
+        sendUserEmailVerification
     };
 
     return (

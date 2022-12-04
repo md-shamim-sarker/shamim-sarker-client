@@ -1,18 +1,19 @@
 import {createBrowserRouter} from "react-router-dom";
 import DashboardLayout from "../layouts/DashboardLayout";
+import InterviewQuestionsLayout from "../layouts/InterviewQuestionsLayout";
 import Main from "../layouts/Main";
 import NotesLayout from "../layouts/NotesLayout";
 import About from "../pages/About/About";
-import AddNotes from "../pages/AddNotes/AddNotes";
+import AddNotesGist from "../pages/AddNotes/AddNotesGist";
+import AddNotesInterview from "../pages/AddNotes/AddNotesInterview";
 import AddNotesQuill from "../pages/AddNotes/AddNotesQuill";
 import Contact from "../pages/Contact/Contact";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Home from "../pages/Home/Home";
-import AddQuestions from "../pages/Interviews/AddQuestions/AddQuestions";
-import ShowQuestions from "../pages/Interviews/ShowQuestions/ShowQuestions";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Login/Register";
 import Notes from "../pages/Notes/Notes";
+import ShowQuestions from "../pages/Notes/ShowQuestions";
 import Projects from "../pages/Projects/Projects";
 
 const router = createBrowserRouter([
@@ -43,10 +44,6 @@ const router = createBrowserRouter([
             {
                 path: "/register",
                 element: <Register></Register>
-            },
-            {
-                path: "/showQuestions",
-                element: <ShowQuestions></ShowQuestions>
             }
         ],
         errorElement: <ErrorPage></ErrorPage>
@@ -64,21 +61,37 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage></ErrorPage>
     },
     {
+        path: "/showQuestions",
+        element: <InterviewQuestionsLayout></InterviewQuestionsLayout>,
+        children: [
+            {
+                path: "/showQuestions/:id",
+                loader: ({params}) => fetch(`http://localhost:5000/questions/id/${params.id}`),
+                element: <ShowQuestions></ShowQuestions>
+            }
+        ],
+        errorElement: <ErrorPage></ErrorPage>
+    },
+    {
         path: "/dashboard",
         element: <DashboardLayout></DashboardLayout>,
         children: [
+            /*  {
+                 path: "/dashboard/add-notes",
+                 element: <AddNotes></AddNotes>
+             }, */
             {
                 path: "/dashboard/add-notes",
-                element: <AddNotes></AddNotes>
+                element: <AddNotesGist></AddNotesGist>
             },
             {
                 path: "/dashboard/add-notes-quill",
                 element: <AddNotesQuill></AddNotesQuill>
             },
             {
-                path: "/dashboard/add-questions",
-                element: <AddQuestions></AddQuestions>
-            },
+                path: "/dashboard/add-notes-interview",
+                element: <AddNotesInterview></AddNotesInterview>
+            }
         ]
     }
 ]);
