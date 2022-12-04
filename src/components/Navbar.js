@@ -114,6 +114,12 @@ const Navbar = () => {
                         <AiOutlineMenuFold className='text-3xl'></AiOutlineMenuFold>
                     </label>
                 }
+                {
+                    window.location.pathname === '/showQuestions' &&
+                    < label htmlFor="questions-drawer" className="btn btn-primary ml-2 drawer-button lg:hidden">
+                        <AiOutlineMenuFold className='text-3xl'></AiOutlineMenuFold>
+                    </label>
+                }
             </div>
         </div>
     );

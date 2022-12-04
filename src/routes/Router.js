@@ -1,4 +1,5 @@
 import {createBrowserRouter} from "react-router-dom";
+import Users from "../dashboard/Users/Users";
 import DashboardLayout from "../layouts/DashboardLayout";
 import InterviewQuestionsLayout from "../layouts/InterviewQuestionsLayout";
 import Main from "../layouts/Main";
@@ -76,10 +77,6 @@ const router = createBrowserRouter([
         path: "/dashboard",
         element: <DashboardLayout></DashboardLayout>,
         children: [
-            /*  {
-                 path: "/dashboard/add-notes",
-                 element: <AddNotes></AddNotes>
-             }, */
             {
                 path: "/dashboard/add-notes",
                 element: <AddNotesGist></AddNotesGist>
@@ -91,8 +88,13 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/add-notes-interview",
                 element: <AddNotesInterview></AddNotesInterview>
+            },
+            {
+                path: "/dashboard/users",
+                element: <Users></Users>
             }
-        ]
+        ],
+        errorElement: <ErrorPage></ErrorPage>
     }
 ]);
 

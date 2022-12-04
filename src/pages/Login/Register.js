@@ -31,12 +31,13 @@ const Register = () => {
                     const image = imgData.data.url;
                     const user = {
                         displayName: fullName,
-                        email: email,
+                        email,
                         photoURL: image,
                         registrationDate: Date().slice(0, 24),
-                        role: role,
+                        role,
                         isVerified: false,
-                        isSuperAdmin: false
+                        isSuperAdmin: false,
+                        isRemoved: false
                     };
                     const url = 'http://localhost:5000/users';
                     addToDb(url, user)

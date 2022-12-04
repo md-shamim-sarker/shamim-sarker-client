@@ -54,7 +54,7 @@ const AddNotesInterview = () => {
                             body: JSON.stringify(noteObj)
                         }).then(() => {
                             alert("Data added!!");
-                            // navigate("/notes");
+                            navigate("/showQuestions");
                         }).catch(error => {
                             console.error(error.message);
                         });
@@ -74,7 +74,7 @@ const AddNotesInterview = () => {
                         }).then(() => {
                             alert("Data added!!");
                             form.reset();
-                            // navigate("/notes");
+                            navigate("/showQuestions");
                             setLoading(!loading);
                         }).catch(error => {
                             console.error(error.message);

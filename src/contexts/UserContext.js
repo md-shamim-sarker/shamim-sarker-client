@@ -129,7 +129,7 @@ const UserContext = ({children}) => {
         signInWithFacebook,
         interviewCategories,
         signInWithEmailPassword,
-        sendUserEmailVerification
+        sendUserEmailVerification,
     };
 
     return (

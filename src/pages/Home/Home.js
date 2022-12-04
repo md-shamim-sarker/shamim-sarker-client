@@ -14,7 +14,7 @@ const Home = () => {
                             <h1 className="mb-3 text-4xl font-bold">MD. SHAMIM SARKER</h1>
                             <h2 className="mb-5 text-3xl font-bold">Web Developer</h2>
                             <p className="mb-5">There is no end to good in the developing sector. Improvement is possible even in the best work. I always try to do better than before. For me it's an ongoing process. I always try to keep myself updated with new technologies.</p>
-                            <button className="btn btn-primary rounded-none">See My Projects</button>
+                            <button className="btn btn-primary rounded-none">See My Simple Projects</button>
                         </div>
                     </div>
                 </div>

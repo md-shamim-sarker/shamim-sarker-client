@@ -22,15 +22,15 @@ const DashboardLayout = () => {
                             <div className="space-y-2">
                                 <div className="flex flex-col space-y-1 mb-3 gap-y-3 font-bold">
 
-                                    <NavLink to={"/dashboard"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>All Users</NavLink>
+                                    <NavLink to={"/dashboard/users"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>Users</NavLink>
 
-                                    <NavLink to={"/dashboard"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>All Readers</NavLink>
+                                    {/* <NavLink to={"/dashboard"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>All Readers</NavLink>
 
                                     <NavLink to={"/dashboard"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>All Writers</NavLink>
 
                                     <NavLink to={"/dashboard"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>All Admins</NavLink>
 
-                                    <NavLink to={"/dashboard"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>Removed Users</NavLink>
+                                    <NavLink to={"/dashboard"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>Removed Users</NavLink> */}
 
                                     <NavLink to={"/"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>All Categories</NavLink>
 

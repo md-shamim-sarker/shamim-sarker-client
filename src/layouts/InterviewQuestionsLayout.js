@@ -9,7 +9,7 @@ const InterviewQuestionsLayout = () => {
         <div>
             <Navbar></Navbar>
             <div className="drawer drawer-mobile">
-                <input id="notes-drawer" type="checkbox" className="drawer-toggle" />
+                <input id="questions-drawer" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content mt-20">
                     <div className='ml-5'>
                         <Outlet></Outlet>
@@ -17,7 +17,7 @@ const InterviewQuestionsLayout = () => {
                     <Footer></Footer>
                 </div>
                 <div className="drawer-side">
-                    <label htmlFor="notes-drawer" className="drawer-overlay"></label>
+                    <label htmlFor="questions-drawer" className="drawer-overlay"></label>
                     <aside className="w-64 p-6 bg-gray-100 text-gray-900 mt-16">
                         <nav className="space-y-8 text-sm">
                             <div className="space-y-2">
