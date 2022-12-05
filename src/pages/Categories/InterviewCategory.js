@@ -5,7 +5,7 @@ const InterviewCategory = ({category}) => {
     const [subCategories, setSubcategories] = useState([]);
 
     useEffect(() => {
-        fetch(`https://shamim-sarker-server.vercel.app/notes/${category.category}`)
+        fetch(`http://localhost:5000/notes/${category.category}`)
             .then(res => res.json())
             .then(data => setSubcategories(data))
             .catch(console.dir);

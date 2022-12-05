@@ -38,7 +38,7 @@ const Login = () => {
                         navigate("/");
                     })
                     .catch(() => {
-                        const url = 'https://shamim-sarker-server.vercel.app/users';
+                        const url = 'http://localhost:5000/users';
                         addToDb(url, user)
                             .then(() => {
                                 toast.success("Login Successful!", {
@@ -65,7 +65,7 @@ const Login = () => {
                         navigate("/");
                     })
                     .catch(() => {
-                        const url = 'https://shamim-sarker-server.vercel.app/users';
+                        const url = 'http://localhost:5000/users';
                         addToDb(url, user)
                             .then(() => {
                                 toast.success("Login Successful!", {
@@ -92,7 +92,7 @@ const Login = () => {
                         navigate("/");
                     })
                     .catch(() => {
-                        const url = 'https://shamim-sarker-server.vercel.app/users';
+                        const url = 'http://localhost:5000/users';
                         addToDb(url, user)
                             .then(() => {
                                 toast.success("Login Successful!", {

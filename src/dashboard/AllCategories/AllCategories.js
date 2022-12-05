@@ -7,7 +7,7 @@ const AllCategories = () => {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        fetch('https://shamim-sarker-server.vercel.app/categories')
+        fetch('http://localhost:5000/categories')
             .then(res => res.json())
             .then(data => setCategories(data))
             .catch(err => console.log(err));

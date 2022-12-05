@@ -1,4 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
+import toast from 'react-hot-toast';
 import {AiOutlinePlusCircle} from 'react-icons/ai';
 import {BsArrowDownCircle} from 'react-icons/bs';
 import ReactQuill from 'react-quill';
@@ -52,19 +53,21 @@ const AddNotesQuill = () => {
         };
 
         if(category !== 'Select a category' && category !== "") {
-            fetch(`https://shamim-sarker-server.vercel.app/categories/${category}`)
+            fetch(`http://localhost:5000/categories/${category}`)
                 .then(res => res.json())
                 .then((data) => {
                     console.log(data);
 
                     // If category exists
                     if(data.category === category) {
-                        fetch('https://shamim-sarker-server.vercel.app/notes', {
+                        fetch('http://localhost:5000/notes', {
                             method: 'POST',
                             headers: {'content-type': 'application/json'},
                             body: JSON.stringify(noteObj)
                         }).then(() => {
-                            alert("Data added!!");
+                            toast.success("Add Note Successful!", {
+                                position: 'bottom-center'
+                            });
                             navigate("/notes");
                         }).catch(error => {
                             console.error(error.message);
@@ -73,17 +76,19 @@ const AddNotesQuill = () => {
                 })
                 .catch(() => {
                     // If category doesn't exist
-                    fetch('https://shamim-sarker-server.vercel.app/categories', {
+                    fetch('http://localhost:5000/categories', {
                         method: 'POST',
                         headers: {'content-type': 'application/json'},
                         body: JSON.stringify(categoryObj)
                     }).then(() => {
-                        fetch('https://shamim-sarker-server.vercel.app/notes', {
+                        fetch('http://localhost:5000/notes', {
                             method: 'POST',
                             headers: {'content-type': 'application/json'},
                             body: JSON.stringify(noteObj)
                         }).then(() => {
-                            alert("Data added!!");
+                            toast.success("Add Note Successful!", {
+                                position: 'bottom-center'
+                            });
                             form.reset();
                             navigate("/notes");
                             setLoading(!loading);
@@ -99,7 +104,7 @@ const AddNotesQuill = () => {
 
     return (
         <form onSubmit={newNoteHandler} className='w-11/12 mx-auto mb-10'>
-            <h3 className='text-3xl font-bold text-center my-10'>Add New Note</h3>
+            <h3 className='text-3xl font-bold text-center my-10'>Add New Note with Quill</h3>
             <div className='flex w-full gap-y-3 flex-col'>
                 <div className="w-full flex">
                     <div className='w-full'>

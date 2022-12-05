@@ -12,12 +12,12 @@ const UserContext = ({children}) => {
 
     // Fetching all categories by category type
     const categoryByType = (categoryType) => {
-        return fetch(`https://shamim-sarker-server.vercel.app/notes/category-type/${categoryType}`);
+        return fetch(`http://localhost:5000/notes/category-type/${categoryType}`);
     };
 
     // Fetching all categories by category
     const allCategories = (categoryType) => {
-        return fetch(`https://shamim-sarker-server.vercel.app/categories/categoryType/${categoryType}`);
+        return fetch(`http://localhost:5000/categories/categoryType/${categoryType}`);
     };
 
     // Add to db
@@ -31,7 +31,7 @@ const UserContext = ({children}) => {
 
     // Is User Exist
     const isUserExist = (email) => {
-        return fetch(`https://shamim-sarker-server.vercel.app/users/${email}`);
+        return fetch(`http://localhost:5000/users/${email}`);
     };
 
     // All Provider

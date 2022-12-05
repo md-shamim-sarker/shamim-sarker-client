@@ -1,4 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
+import toast from 'react-hot-toast';
 import {AiOutlinePlusCircle} from 'react-icons/ai';
 import {BsArrowDownCircle} from 'react-icons/bs';
 import ReactQuill from 'react-quill';
@@ -50,19 +51,21 @@ const AddNotesInterview = () => {
         };
 
         if(category !== 'Select a category' && category !== "") {
-            fetch(`https://shamim-sarker-server.vercel.app/categories/${category}`)
+            fetch(`http://localhost:5000/categories/${category}`)
                 .then(res => res.json())
                 .then((data) => {
                     console.log(data);
 
                     // If category exists
                     if(data.category === category) {
-                        fetch('https://shamim-sarker-server.vercel.app/notes', {
+                        fetch('http://localhost:5000/notes', {
                             method: 'POST',
                             headers: {'content-type': 'application/json'},
                             body: JSON.stringify(noteObj)
                         }).then(() => {
-                            alert("Data added!!");
+                            toast.success("Add Note Successful!", {
+                                position: 'bottom-center'
+                            });
                             navigate("/showQuestions");
                         }).catch(error => {
                             console.error(error.message);
@@ -71,17 +74,19 @@ const AddNotesInterview = () => {
                 })
                 .catch(() => {
                     // If category doesn't exist
-                    fetch('https://shamim-sarker-server.vercel.app/categories', {
+                    fetch('http://localhost:5000/categories', {
                         method: 'POST',
                         headers: {'content-type': 'application/json'},
                         body: JSON.stringify(categoryObj)
                     }).then(() => {
-                        fetch('https://shamim-sarker-server.vercel.app/notes', {
+                        fetch('http://localhost:5000/notes', {
                             method: 'POST',
                             headers: {'content-type': 'application/json'},
                             body: JSON.stringify(noteObj)
                         }).then(() => {
-                            alert("Data added!!");
+                            toast.success("Add Note Successful!", {
+                                position: 'bottom-center'
+                            });
                             form.reset();
                             navigate("/showQuestions");
                             setLoading(!loading);
