@@ -13,6 +13,7 @@ const Register = () => {
         event.preventDefault();
         const form = event.target;
         const fullName = form.fullName.value;
+        const phone = form.phone.value;
         const email = form.email.value;
         const password = form.password.value;
         const role = form.role.value;
@@ -31,6 +32,7 @@ const Register = () => {
                     const image = imgData.data.url;
                     const user = {
                         displayName: fullName,
+                        phone,
                         email,
                         photoURL: image,
                         registrationDate: Date().slice(0, 24),
@@ -81,7 +83,7 @@ const Register = () => {
                             <div className="label">
                                 <span className="label-text">Full Name</span>
                             </div>
-                            <input type="text" name='fullName' placeholder="Full Name" className="input input-bordered" />
+                            <input type="text" name='fullName' placeholder="Shamim Sarker" className="input input-bordered" />
                         </div>
                         <div className="form-control">
                             <label className="label">
@@ -91,16 +93,22 @@ const Register = () => {
                         </div>
                         <div className="form-control">
                             <label className="label">
+                                <span className="label-text">Your Phone Number</span>
+                            </label>
+                            <input type="text" name='phone' placeholder="+8801723795366" className="input input-bordered" />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="email" name='email' placeholder="email" className="input input-bordered" />
+                            <input type="email" name='email' placeholder="shamim.sarker.2023@gmail.com" className="input input-bordered" />
                         </div>
 
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" name='password' placeholder="password" className="input input-bordered" />
+                            <input type="password" name='password' placeholder="******" className="input input-bordered" />
                         </div>
                         <div className="form-control">
                             <label className="label">
@@ -108,16 +116,12 @@ const Register = () => {
                             </label>
                             <div className='flex items-center gap-x-6'>
                                 <div className='flex items-center gap-x-2'>
-                                    <input type="radio" name="role" className="radio" id='reader' value='reader' />
+                                    <input type="radio" name="role" className="radio" id='reader' value='reader' defaultChecked />
                                     <label htmlFor='reader'>Reader</label>
                                 </div>
                                 <div className='flex items-center gap-x-2'>
                                     <input type="radio" name="role" className="radio" id='writer' value='writer' />
                                     <label htmlFor='writer'>Writer</label>
-                                </div>
-                                <div className='flex items-center gap-x-2'>
-                                    <input type="radio" name="role" className="radio" id='admin' value='admin' />
-                                    <label htmlFor='admin'>Admin</label>
                                 </div>
                             </div>
                         </div>

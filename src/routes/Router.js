@@ -1,6 +1,8 @@
 import {createBrowserRouter} from "react-router-dom";
 import AllCategories from "../dashboard/AllCategories/AllCategories";
 import AllNotes from "../dashboard/AllNotes/AllNotes";
+import MyFavorites from "../dashboard/MyFavorites/MyFavorites";
+import MyNotes from "../dashboard/MyNotes/MyNotes";
 import RemovedUsers from "../dashboard/RemovedUsers/RemovedUsers";
 import Summary from "../dashboard/Summary/Summary";
 import Users from "../dashboard/Users/Users";
@@ -122,6 +124,14 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/all-notes",
                 element: <AllNotes></AllNotes>
+            },
+            {
+                path: "/dashboard/my-notes",
+                element: <MyNotes></MyNotes>
+            },
+            {
+                path: "/dashboard/my-favorites",
+                element: <MyFavorites></MyFavorites>
             }
         ],
         errorElement: <ErrorPage></ErrorPage>

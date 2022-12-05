@@ -1,17 +1,17 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {AuthContext} from '../../contexts/UserContext';
-import Note from './Note';
+import MyNote from './MyNote';
 
-const AllNotes = () => {
-    const {loading} = useContext(AuthContext);
-    const [allNotes, setAllNotes] = useState([]);
+const MyNotes = () => {
+    const {user} = useContext(AuthContext);
+    const [myNotes, setMyNotes] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/notes')
+        fetch(`http://localhost:5000/notes/email/${user.email}`)
             .then(res => res.json())
-            .then(data => setAllNotes(data))
+            .then(data => setMyNotes(data))
             .catch(err => console.log(err));
-    }, [loading]);
+    }, [user.email]);
 
     return (
         <div>
@@ -23,18 +23,18 @@ const AllNotes = () => {
                             <th>SL</th>
                             <th>Note Heading</th>
                             <th>Category</th>
-                            <th>Writer</th>
+                            <th>Visit</th>
                             <th>Update</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            allNotes.map((note, index) => <Note
+                            myNotes.map((note, index) => <MyNote
                                 key={note._id}
                                 index={index}
                                 note={note}
-                            ></Note>)
+                            ></MyNote>)
                         }
                     </tbody>
                 </table>
@@ -43,4 +43,4 @@ const AllNotes = () => {
     );
 };
 
-export default AllNotes;
+export default MyNotes;

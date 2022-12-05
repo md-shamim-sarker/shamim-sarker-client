@@ -16,7 +16,7 @@ const AllCategories = () => {
     return (
         <div className='pl-2 pr-3'>
             <h2 className='text-3xl font-bold text-center my-6'>All Categories</h2>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto my-10">
                 <table className="table w-full">
                     <thead>
                         <tr>

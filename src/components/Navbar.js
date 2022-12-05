@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {Link, NavLink} from 'react-router-dom';
+import {Link, NavLink, useNavigate} from 'react-router-dom';
 import {AuthContext} from '../contexts/UserContext';
 import {FcReading} from 'react-icons/fc';
 import {AiOutlineClose, AiOutlineMenuFold, AiOutlineMenuUnfold} from 'react-icons/ai';
@@ -55,10 +55,14 @@ const menuItem = <>
 const Navbar = () => {
     const {user, logOut} = useContext(AuthContext);
     const {toggleMenu, setToggleMenu} = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const logOutHandler = () => {
         logOut()
-            .then(() => {}).then(err => console.log(err));
+            .then(() => {
+                navigate("/login");
+            })
+            .then(err => console.log(err));
     };
 
     return (
