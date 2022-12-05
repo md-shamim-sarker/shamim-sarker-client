@@ -7,19 +7,16 @@ const auth = getAuth(app);
 
 const UserContext = ({children}) => {
     const [user, setUser] = useState({});
-    const [storedCategories, setStoredCategories] = useState([]);
+    // const [storedCategories, setStoredCategories] = useState([]);
     const [loading, setLoading] = useState(true);
     const [toggleMenu, setToggleMenu] = useState(false);
 
-    // Fetching all categories
-    useEffect(() => {
-        fetch('http://localhost:5000/categories')
-            .then(res => res.json())
-            .then(data => setStoredCategories(data))
-            .catch(console.dir);
-    }, [loading]);
-
     // Fetching all categories by category type
+    const categoryByType = (categoryType) => {
+        return fetch(`http://localhost:5000/notes/category-type/${categoryType}`);
+    };
+
+    // Fetching all categories by category
     const allCategories = (categoryType) => {
         return fetch(`http://localhost:5000/categories/categoryType/${categoryType}`);
     };
@@ -121,7 +118,8 @@ const UserContext = ({children}) => {
         setToggleMenu,
         signInWithGoogle,
         signInWithGithub,
-        storedCategories,
+        // storedCategories,
+        categoryByType,
         signInWithFacebook,
         signInWithEmailPassword,
         sendUserEmailVerification,

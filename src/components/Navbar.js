@@ -29,13 +29,13 @@ const menuItem = <>
     <li>
         <NavLink to={"/notes"}
             className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
-            Notes
+            Tech Notes
         </NavLink>
     </li>
     <li>
         <NavLink to={"/showQuestions"}
             className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
-            Interviews
+            Interview Notes
         </NavLink>
     </li>
     <li>

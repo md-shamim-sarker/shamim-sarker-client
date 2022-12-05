@@ -1,6 +1,8 @@
 import {createBrowserRouter} from "react-router-dom";
 import AllCategories from "../dashboard/AllCategories/AllCategories";
+import AllNotes from "../dashboard/AllNotes/AllNotes";
 import RemovedUsers from "../dashboard/RemovedUsers/RemovedUsers";
+import Summary from "../dashboard/Summary/Summary";
 import Users from "../dashboard/Users/Users";
 import DashboardLayout from "../layouts/DashboardLayout";
 import InterviewQuestionsLayout from "../layouts/InterviewQuestionsLayout";
@@ -16,7 +18,9 @@ import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Login/Register";
 import Notes from "../pages/Notes/Notes";
+import NotesHome from "../pages/Notes/NotesHome";
 import ShowQuestions from "../pages/Notes/ShowQuestions";
+import ShowQuestionsHome from "../pages/Notes/ShowQuestionsHome";
 import Projects from "../pages/Projects/Projects";
 
 const router = createBrowserRouter([
@@ -56,6 +60,10 @@ const router = createBrowserRouter([
         element: <NotesLayout></NotesLayout>,
         children: [
             {
+                path: "/notes",
+                element: <NotesHome></NotesHome>
+            },
+            {
                 path: "/notes/:id",
                 loader: ({params}) => fetch(`http://localhost:5000/notes/id/${params.id}`),
                 element: <Notes></Notes>
@@ -68,8 +76,12 @@ const router = createBrowserRouter([
         element: <InterviewQuestionsLayout></InterviewQuestionsLayout>,
         children: [
             {
+                path: "/showQuestions",
+                element: <ShowQuestionsHome></ShowQuestionsHome>
+            },
+            {
                 path: "/showQuestions/:id",
-                loader: ({params}) => fetch(`http://localhost:5000/questions/id/${params.id}`),
+                loader: ({params}) => fetch(`http://localhost:5000/notes/id/${params.id}`),
                 element: <ShowQuestions></ShowQuestions>
             }
         ],
@@ -79,6 +91,10 @@ const router = createBrowserRouter([
         path: "/dashboard",
         element: <DashboardLayout></DashboardLayout>,
         children: [
+            {
+                path: "/dashboard",
+                element: <Summary></Summary>
+            },
             {
                 path: "/dashboard/add-notes",
                 element: <AddNotesGist></AddNotesGist>
@@ -102,6 +118,10 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/all-categories",
                 element: <AllCategories></AllCategories>
+            },
+            {
+                path: "/dashboard/all-notes",
+                element: <AllNotes></AllNotes>
             }
         ],
         errorElement: <ErrorPage></ErrorPage>

@@ -42,9 +42,7 @@ const DashboardLayout = () => {
 
                                     <NavLink to={"/"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>My Notes</NavLink>
 
-                                    <NavLink to={"/"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>All Notes</NavLink>
-
-                                    <NavLink to={"/"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>Summary</NavLink>
+                                    <NavLink to={"/dashboard/all-notes"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>All Notes</NavLink>
                                 </div>
                             </div>
                         </nav>

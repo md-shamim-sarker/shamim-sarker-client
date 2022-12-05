@@ -38,6 +38,7 @@ const AddNotesQuill = () => {
         const categoryObj = {category, categoryType};
         const noteObj = {
             category,
+            categoryType,
             heading,
             userName,
             userPhoto,
@@ -106,13 +107,18 @@ const AddNotesQuill = () => {
                             newCategory
                                 ? <div className="w-full">
                                     <input
+                                        tabIndex={0}
                                         type="text"
                                         name="category"
                                         placeholder="Enter a new category"
                                         className="input input-bordered w-full rounded-none focus:outline-none" />
                                 </div>
                                 :
-                                <select name='category' className="select select-bordered w-full rounded-none focus:outline-none text-lg" defaultValue='Select a category'>
+                                <select
+                                    tabIndex={1}
+                                    name='category'
+                                    className="select select-bordered w-full rounded-none focus:outline-none text-lg"
+                                    defaultValue='Select a category'>
                                     <option>Select a category</option>
                                     {
                                         categories.map(category =>
@@ -134,17 +140,30 @@ const AddNotesQuill = () => {
 
                 <div className="w-full">
                     <input
+                        tabIndex={2}
                         type="text"
                         name="heading"
                         placeholder="Enter Heading"
                         className="input input-bordered w-full rounded-none focus:outline-none text-lg" />
                 </div>
 
-                <textarea name='intro' className="textarea textarea-bordered w-full rounded-none focus:outline-none text-lg" placeholder="Write something about this note....."></textarea>
+                <textarea
+                    tabIndex={3}
+                    name='intro'
+                    className="textarea textarea-bordered w-full rounded-none focus:outline-none text-lg"
+                    placeholder="Write something about this note....."></textarea>
 
-                <ReactQuill theme="snow" value={code} onChange={setCode} />
+                <ReactQuill
+                    tabIndex={4}
+                    theme="snow"
+                    value={code}
+                    onChange={setCode} />
 
-                <button type='submit' className='btn btn-primary rounded-none'>Submit</button>
+                <button
+                    tabIndex={5}
+                    type='submit'
+                    className='btn btn-primary rounded-none'
+                >Submit</button>
             </div>
         </form>
     );

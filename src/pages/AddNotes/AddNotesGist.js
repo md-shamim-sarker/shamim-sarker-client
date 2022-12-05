@@ -10,6 +10,7 @@ const AddNotesGist = () => {
     const [newCategory, setNewCategory] = useState(false);
     const navigate = useNavigate();
 
+    // Get all tech categories
     useEffect(() => {
         allCategories('tech')
             .then(res => res.json())
@@ -37,6 +38,7 @@ const AddNotesGist = () => {
         const categoryObj = {category, categoryType};
         const noteObj = {
             category,
+            categoryType,
             heading,
             userName,
             userPhoto,
@@ -103,13 +105,18 @@ const AddNotesGist = () => {
                             newCategory
                                 ? <div className="w-full">
                                     <input
+                                        tabIndex={0}
                                         type="text"
                                         name="category"
                                         placeholder="Enter a new category"
                                         className="input input-bordered w-full rounded-none focus:outline-none text-lg" />
                                 </div>
                                 :
-                                <select name='category' className="select select-bordered w-full rounded-none focus:outline-none text-lg" defaultValue='Select a category'>
+                                <select
+                                    tabIndex={1}
+                                    name='category'
+                                    className="select select-bordered w-full rounded-none focus:outline-none text-lg"
+                                    defaultValue='Select a category'>
                                     <option>Select a category</option>
                                     {
                                         categories.map(category =>
@@ -131,6 +138,7 @@ const AddNotesGist = () => {
 
                 <div className="w-full">
                     <input
+                        tabIndex={2}
                         type="text"
                         name="heading"
                         placeholder="Enter Heading"
@@ -138,17 +146,22 @@ const AddNotesGist = () => {
                 </div>
 
                 <div className="form-control w-full">
-                    <textarea name='intro' className="textarea textarea-bordered w-full rounded-none focus:outline-none text-lg" placeholder="Write something about this note....."></textarea>
+                    <textarea
+                        tabIndex={3}
+                        name='intro'
+                        className="textarea textarea-bordered w-full rounded-none focus:outline-none text-lg"
+                        placeholder="Write something about this note....."></textarea>
                 </div>
 
                 <div className="form-control w-full">
                     <input
+                        tabIndex={4}
                         name="code"
                         placeholder="Enter Gist ID"
                         className="input input-bordered w-full rounded-none focus:outline-none text-lg" />
                 </div>
 
-                <button type='submit' className='btn btn-primary rounded-none focus:outline-none'>Submit</button>
+                <button tabIndex={5} type='submit' className='btn btn-primary rounded-none'>Submit</button>
 
             </div>
         </form>

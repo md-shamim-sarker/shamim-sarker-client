@@ -37,6 +37,7 @@ const AddNotesInterview = () => {
         const categoryObj = {category, categoryType};
         const noteObj = {
             category,
+            categoryType,
             heading,
             userName,
             userPhoto,
@@ -49,7 +50,6 @@ const AddNotesInterview = () => {
         };
 
         if(category !== 'Select a category' && category !== "") {
-            // fetch(`http://localhost:5000/interviewCategories/${category}`)
             fetch(`http://localhost:5000/categories/${category}`)
                 .then(res => res.json())
                 .then((data) => {
@@ -57,7 +57,7 @@ const AddNotesInterview = () => {
 
                     // If category exists
                     if(data.category === category) {
-                        fetch('http://localhost:5000/questions', {
+                        fetch('http://localhost:5000/notes', {
                             method: 'POST',
                             headers: {'content-type': 'application/json'},
                             body: JSON.stringify(noteObj)
@@ -71,13 +71,12 @@ const AddNotesInterview = () => {
                 })
                 .catch(() => {
                     // If category doesn't exist
-                    // fetch('http://localhost:5000/interviewCategories', {
                     fetch('http://localhost:5000/categories', {
                         method: 'POST',
                         headers: {'content-type': 'application/json'},
                         body: JSON.stringify(categoryObj)
                     }).then(() => {
-                        fetch('http://localhost:5000/questions', {
+                        fetch('http://localhost:5000/notes', {
                             method: 'POST',
                             headers: {'content-type': 'application/json'},
                             body: JSON.stringify(noteObj)
@@ -106,13 +105,18 @@ const AddNotesInterview = () => {
                             newCategory
                                 ? <div className="w-full">
                                     <input
+                                        tabIndex={0}
                                         type="text"
                                         name="category"
                                         placeholder="Enter a new category"
                                         className="input input-bordered w-full rounded-none focus:outline-none" />
                                 </div>
                                 :
-                                <select name='category' className="select select-bordered w-full rounded-none focus:outline-none text-lg" defaultValue='Select a category'>
+                                <select
+                                    tabIndex={1}
+                                    name='category'
+                                    className="select select-bordered w-full rounded-none focus:outline-none text-lg"
+                                    defaultValue='Select a category'>
                                     <option>Select a category</option>
                                     {
                                         categories.map(category =>
@@ -131,19 +135,17 @@ const AddNotesInterview = () => {
                         }
                     </button>
                 </div>
-
                 <div className="w-full">
                     <input
+                        tabIndex={2}
                         type="text"
                         name="heading"
                         placeholder="Enter Heading"
                         className="input input-bordered w-full rounded-none focus:outline-none text-lg" />
                 </div>
-
                 <div className='text-lg'>
-                    <ReactQuill theme="snow" value={note} onChange={setNote} />
+                    <ReactQuill tabIndex={3} theme="snow" value={note} onChange={setNote} />
                 </div>
-
                 <button type='submit' className='btn btn-primary rounded-none'>Submit</button>
             </div>
         </form>
