@@ -9,7 +9,7 @@ const RemovedUsers = () => {
 
     // Fetching all users from db
     useEffect(() => {
-        fetch('http://localhost:5000/removed-users')
+        fetch('https://shamim-sarker-server.vercel.app/removed-users')
             .then(res => res.json())
             .then(data => {
                 setUserDb(data);
@@ -19,7 +19,7 @@ const RemovedUsers = () => {
 
     // Restore User
     const restoreUserHandler = user => {
-        fetch(`http://localhost:5000/users/restore-user/${user._id}`, {
+        fetch(`https://shamim-sarker-server.vercel.app/users/restore-user/${user._id}`, {
             method: 'PUT'
         }).then(() => {
             toast.success('Restore User Success!', {position: 'bottom-center'});

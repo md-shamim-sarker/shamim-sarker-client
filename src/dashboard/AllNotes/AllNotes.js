@@ -7,7 +7,7 @@ const AllNotes = () => {
     const [allNotes, setAllNotes] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/notes')
+        fetch('https://shamim-sarker-server.vercel.app/notes')
             .then(res => res.json())
             .then(data => setAllNotes(data))
             .catch(err => console.log(err));

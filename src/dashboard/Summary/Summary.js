@@ -9,42 +9,42 @@ const Summary = () => {
     const [readers, setReaders] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/users')
+        fetch('https://shamim-sarker-server.vercel.app/users')
             .then(res => res.json())
             .then(data => setUsers(data))
             .catch(err => console.log(err));
     }, []);
 
     useEffect(() => {
-        fetch('http://localhost:5000/categories')
+        fetch('https://shamim-sarker-server.vercel.app/categories')
             .then(res => res.json())
             .then(data => setCategories(data))
             .catch(err => console.log(err));
     }, []);
 
     useEffect(() => {
-        fetch('http://localhost:5000/notes')
+        fetch('https://shamim-sarker-server.vercel.app/notes')
             .then(res => res.json())
             .then(data => setNotes(data))
             .catch(err => console.log(err));
     }, []);
 
     useEffect(() => {
-        fetch('http://localhost:5000/users/admins')
+        fetch('https://shamim-sarker-server.vercel.app/users/admins')
             .then(res => res.json())
             .then(data => setAdmins(data))
             .catch(err => console.log(err));
     }, []);
 
     useEffect(() => {
-        fetch('http://localhost:5000/users/writers')
+        fetch('https://shamim-sarker-server.vercel.app/users/writers')
             .then(res => res.json())
             .then(data => setWriters(data))
             .catch(err => console.log(err));
     }, []);
 
     useEffect(() => {
-        fetch('http://localhost:5000/users/readers')
+        fetch('https://shamim-sarker-server.vercel.app/users/readers')
             .then(res => res.json())
             .then(data => setReaders(data))
             .catch(err => console.log(err));
