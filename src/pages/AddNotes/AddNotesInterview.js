@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {AiOutlinePlusCircle} from 'react-icons/ai';
 import {BsArrowDownCircle} from 'react-icons/bs';
 import ReactQuill from 'react-quill';
@@ -6,17 +6,25 @@ import {useNavigate} from 'react-router-dom';
 import {AuthContext} from '../../contexts/UserContext';
 
 const AddNotesInterview = () => {
-    const {user} = useContext(AuthContext);
+    const {user, loading, setLoading, allCategories} = useContext(AuthContext);
+    const [categories, setCategories] = useState([]);
     const [newCategory, setNewCategory] = useState(false);
-    const {interviewCategories, loading, setLoading} = useContext(AuthContext);
     const navigate = useNavigate();
     const [note, setNote] = useState('');
+
+    useEffect(() => {
+        allCategories('interview')
+            .then(res => res.json())
+            .then(data => setCategories(data))
+            .catch(err => console.log(err));
+    }, [allCategories]);
 
     // New Note Handler
     const newNoteHandler = event => {
         event.preventDefault();
         const form = event.target;
         const category = form.category.value;
+        const categoryType = 'interview';
         const heading = form.heading.value;
         const type = 'interview';
         const userName = user.displayName;
@@ -26,7 +34,7 @@ const AddNotesInterview = () => {
         const ratings = 0;
         const likes = 0;
 
-        const categoryObj = {category};
+        const categoryObj = {category, categoryType};
         const noteObj = {
             category,
             heading,
@@ -41,7 +49,8 @@ const AddNotesInterview = () => {
         };
 
         if(category !== 'Select a category' && category !== "") {
-            fetch(`http://localhost:5000/interviewCategories/${category}`)
+            // fetch(`http://localhost:5000/interviewCategories/${category}`)
+            fetch(`http://localhost:5000/categories/${category}`)
                 .then(res => res.json())
                 .then((data) => {
                     console.log(data);
@@ -62,7 +71,8 @@ const AddNotesInterview = () => {
                 })
                 .catch(() => {
                     // If category doesn't exist
-                    fetch('http://localhost:5000/interviewCategories', {
+                    // fetch('http://localhost:5000/interviewCategories', {
+                    fetch('http://localhost:5000/categories', {
                         method: 'POST',
                         headers: {'content-type': 'application/json'},
                         body: JSON.stringify(categoryObj)
@@ -105,7 +115,7 @@ const AddNotesInterview = () => {
                                 <select name='category' className="select select-bordered w-full rounded-none focus:outline-none text-lg" defaultValue='Select a category'>
                                     <option>Select a category</option>
                                     {
-                                        interviewCategories.map(category =>
+                                        categories.map(category =>
                                             <option key={category._id}>{category.category}</option>)
                                     }
                                 </select>

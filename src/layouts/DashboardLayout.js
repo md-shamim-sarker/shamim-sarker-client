@@ -32,7 +32,7 @@ const DashboardLayout = () => {
 
                                     <NavLink to={"/dashboard"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>Removed Users</NavLink> */}
 
-                                    <NavLink to={"/"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>All Categories</NavLink>
+                                    <NavLink to={"/dashboard/all-categories"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>All Categories</NavLink>
 
                                     <NavLink to={"/dashboard/add-notes"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>Add Notes Github Gist</NavLink>
 
@@ -43,8 +43,6 @@ const DashboardLayout = () => {
                                     <NavLink to={"/"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>My Notes</NavLink>
 
                                     <NavLink to={"/"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>All Notes</NavLink>
-
-                                    <NavLink to={"/"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>Writer Request</NavLink>
 
                                     <NavLink to={"/"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>Summary</NavLink>
                                 </div>

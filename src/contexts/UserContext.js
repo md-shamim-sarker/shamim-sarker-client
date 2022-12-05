@@ -8,7 +8,6 @@ const auth = getAuth(app);
 const UserContext = ({children}) => {
     const [user, setUser] = useState({});
     const [storedCategories, setStoredCategories] = useState([]);
-    const [interviewCategories, setInterviewCategories] = useState([]);
     const [loading, setLoading] = useState(true);
     const [toggleMenu, setToggleMenu] = useState(false);
 
@@ -20,13 +19,10 @@ const UserContext = ({children}) => {
             .catch(console.dir);
     }, [loading]);
 
-    // Fetching all interview categories
-    useEffect(() => {
-        fetch('http://localhost:5000/interviewCategories')
-            .then(res => res.json())
-            .then(data => setInterviewCategories(data))
-            .catch(console.dir);
-    }, [loading]);
+    // Fetching all categories by category type
+    const allCategories = (categoryType) => {
+        return fetch(`http://localhost:5000/categories/categoryType/${categoryType}`);
+    };
 
     // Add to db
     const addToDb = (url, dataObj) => {
@@ -127,9 +123,9 @@ const UserContext = ({children}) => {
         signInWithGithub,
         storedCategories,
         signInWithFacebook,
-        interviewCategories,
         signInWithEmailPassword,
         sendUserEmailVerification,
+        allCategories
     };
 
     return (

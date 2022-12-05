@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {AiOutlinePlusCircle} from 'react-icons/ai';
 import {BsArrowDownCircle} from 'react-icons/bs';
 import ReactQuill from 'react-quill';
@@ -6,17 +6,25 @@ import {useNavigate} from 'react-router-dom';
 import {AuthContext} from '../../contexts/UserContext';
 
 const AddNotesQuill = () => {
-    const {user} = useContext(AuthContext);
+    const {user, loading, setLoading, allCategories} = useContext(AuthContext);
+    const [categories, setCategories] = useState([]);
     const [newCategory, setNewCategory] = useState(false);
-    const {storedCategories, loading, setLoading} = useContext(AuthContext);
     const navigate = useNavigate();
     const [code, setCode] = useState('');
+
+    useEffect(() => {
+        allCategories('tech')
+            .then(res => res.json())
+            .then(data => setCategories(data))
+            .catch(err => console.log(err));
+    }, [allCategories]);
 
     // New Note Handler
     const newNoteHandler = event => {
         event.preventDefault();
         const form = event.target;
         const category = form.category.value;
+        const categoryType = 'tech';
         const heading = form.heading.value;
         const intro = form.intro.value;
         const type = 'quill';
@@ -27,7 +35,7 @@ const AddNotesQuill = () => {
         const ratings = 0;
         const likes = 0;
 
-        const categoryObj = {category};
+        const categoryObj = {category, categoryType};
         const noteObj = {
             category,
             heading,
@@ -107,7 +115,7 @@ const AddNotesQuill = () => {
                                 <select name='category' className="select select-bordered w-full rounded-none focus:outline-none text-lg" defaultValue='Select a category'>
                                     <option>Select a category</option>
                                     {
-                                        storedCategories.map(category =>
+                                        categories.map(category =>
                                             <option key={category._id}>{category.category}</option>)
                                     }
                                 </select>

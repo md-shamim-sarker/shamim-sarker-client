@@ -1,4 +1,5 @@
 import {createBrowserRouter} from "react-router-dom";
+import AllCategories from "../dashboard/AllCategories/AllCategories";
 import RemovedUsers from "../dashboard/RemovedUsers/RemovedUsers";
 import Users from "../dashboard/Users/Users";
 import DashboardLayout from "../layouts/DashboardLayout";
@@ -97,6 +98,10 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/removed-users",
                 element: <RemovedUsers></RemovedUsers>
+            },
+            {
+                path: "/dashboard/all-categories",
+                element: <AllCategories></AllCategories>
             }
         ],
         errorElement: <ErrorPage></ErrorPage>
