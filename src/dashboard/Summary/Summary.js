@@ -77,7 +77,7 @@ const Summary = () => {
                         <div className="stat-value">{admins.length}</div>
                     </div>
                     <div className="stat text-center">
-                        <div className="stat-title text-2xl font-bold">Total Writers Categories</div>
+                        <div className="stat-title text-2xl font-bold">Total Writers</div>
                         <div className="stat-value">{writers.length}</div>
                     </div>
                     <div className="stat text-center">

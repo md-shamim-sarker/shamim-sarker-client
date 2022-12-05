@@ -4,58 +4,62 @@ import {AuthContext} from '../contexts/UserContext';
 import {FcReading} from 'react-icons/fc';
 import {AiOutlineClose, AiOutlineMenuFold, AiOutlineMenuUnfold} from 'react-icons/ai';
 
-const menuItem = <>
-    <li>
-        <NavLink
-            to={"/"}
-            className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
-            Portfolio
-        </NavLink>
-    </li>
-    <li>
-        <NavLink
-            to={"/about"}
-            className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
-            About
-        </NavLink>
-    </li>
-    <li>
-        <NavLink
-            to={"/projects"}
-            className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
-            Projects
-        </NavLink>
-    </li>
-    <li>
-        <NavLink to={"/notes"}
-            className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
-            Tech Notes
-        </NavLink>
-    </li>
-    <li>
-        <NavLink to={"/showQuestions"}
-            className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
-            Interview Notes
-        </NavLink>
-    </li>
-    <li>
-        <NavLink to={"/contact"}
-            className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
-            Contact
-        </NavLink>
-    </li>
-    <li>
-        <NavLink to={"/dashboard"}
-            className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
-            Dashboard
-        </NavLink>
-    </li>
-</>;
-
 const Navbar = () => {
     const {user, logOut} = useContext(AuthContext);
     const {toggleMenu, setToggleMenu} = useContext(AuthContext);
     const navigate = useNavigate();
+
+    const menuItem = <>
+        <li>
+            <NavLink
+                to={"/"}
+                className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
+                Portfolio
+            </NavLink>
+        </li>
+        <li>
+            <NavLink
+                to={"/about"}
+                className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
+                About
+            </NavLink>
+        </li>
+        <li>
+            <NavLink
+                to={"/projects"}
+                className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
+                Projects
+            </NavLink>
+        </li>
+        <li>
+            <NavLink to={"/notes"}
+                className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
+                Tech Notes
+            </NavLink>
+        </li>
+        <li>
+            <NavLink to={"/showQuestions"}
+                className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
+                Interview Notes
+            </NavLink>
+        </li>
+        <li>
+            <NavLink to={"/contact"}
+                className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
+                Contact
+            </NavLink>
+        </li>
+        {
+            user?.uid &&
+            <li>
+                <NavLink to={"/dashboard"}
+                    className={({isActive}) => isActive ? 'border-b-2 border-blue-700' : undefined}>
+                    Dashboard
+                </NavLink>
+            </li>
+        }
+
+    </>;
 
     const logOutHandler = () => {
         logOut()

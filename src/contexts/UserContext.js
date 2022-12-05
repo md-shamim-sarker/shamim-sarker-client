@@ -7,8 +7,16 @@ const auth = getAuth(app);
 
 const UserContext = ({children}) => {
     const [user, setUser] = useState({});
+    const [userDb, setUserDb] = useState({});
     const [loading, setLoading] = useState(true);
     const [toggleMenu, setToggleMenu] = useState(false);
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/users/${user?.email}`)
+            .then(res => res.json())
+            .then(data => setUserDb(data))
+            .catch(err => console.log(err));
+    }, [user?.email]);
 
     // Fetching all categories by category type
     const categoryByType = (categoryType) => {
@@ -121,7 +129,8 @@ const UserContext = ({children}) => {
         signInWithFacebook,
         signInWithEmailPassword,
         sendUserEmailVerification,
-        allCategories
+        allCategories,
+        userDb
     };
 
     return (

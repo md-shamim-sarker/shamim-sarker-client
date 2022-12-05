@@ -38,7 +38,8 @@ const Register = () => {
                         registrationDate: Date().slice(0, 24),
                         role,
                         isVerified: false,
-                        isRemoved: false
+                        isRemoved: false,
+                        isAdmin: false
                     };
                     const url = 'http://localhost:5000/users';
                     addToDb(url, user)
