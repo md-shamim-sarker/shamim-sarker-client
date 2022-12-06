@@ -24,6 +24,10 @@ import NotesHome from "../pages/Notes/NotesHome";
 import ShowQuestions from "../pages/Notes/ShowQuestions";
 import ShowQuestionsHome from "../pages/Notes/ShowQuestionsHome";
 import Projects from "../pages/Projects/Projects";
+import AdminRouter from "./AdminRouter";
+import PrivateRouter from "./PrivateRouter";
+import SuperAdminRouter from "./SuperAdminRouter";
+import WriterRouter from "./WriterRouter";
 
 const router = createBrowserRouter([
     {
@@ -91,7 +95,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/dashboard",
-        element: <DashboardLayout></DashboardLayout>,
+        element: <PrivateRouter><DashboardLayout></DashboardLayout></PrivateRouter>,
         children: [
             {
                 path: "/dashboard",
@@ -99,35 +103,35 @@ const router = createBrowserRouter([
             },
             {
                 path: "/dashboard/add-notes",
-                element: <AddNotesGist></AddNotesGist>
+                element: <WriterRouter><AddNotesGist></AddNotesGist></WriterRouter>
             },
             {
                 path: "/dashboard/add-notes-quill",
-                element: <AddNotesQuill></AddNotesQuill>
+                element: <WriterRouter><AddNotesQuill></AddNotesQuill></WriterRouter>
             },
             {
                 path: "/dashboard/add-notes-interview",
-                element: <AddNotesInterview></AddNotesInterview>
+                element: <WriterRouter><AddNotesInterview></AddNotesInterview></WriterRouter>
             },
             {
                 path: "/dashboard/users",
-                element: <Users></Users>
+                element: <AdminRouter><Users></Users></AdminRouter>
             },
             {
                 path: "/dashboard/removed-users",
-                element: <RemovedUsers></RemovedUsers>
+                element: <SuperAdminRouter><RemovedUsers></RemovedUsers></SuperAdminRouter>
             },
             {
                 path: "/dashboard/all-categories",
-                element: <AllCategories></AllCategories>
+                element: <AdminRouter><AllCategories></AllCategories></AdminRouter>
             },
             {
                 path: "/dashboard/all-notes",
-                element: <AllNotes></AllNotes>
+                element: <AdminRouter><AllNotes></AllNotes></AdminRouter>
             },
             {
                 path: "/dashboard/my-notes",
-                element: <MyNotes></MyNotes>
+                element: <WriterRouter><MyNotes></MyNotes></WriterRouter>
             },
             {
                 path: "/dashboard/my-favorites",

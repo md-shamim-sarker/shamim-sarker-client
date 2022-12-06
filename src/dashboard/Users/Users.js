@@ -5,7 +5,7 @@ import User from './User';
 
 const Users = () => {
     const [userDb, setUserDb] = useState([]);
-    const {user, loading, setLoading} = useContext(AuthContext);
+    const {user, render, setRender} = useContext(AuthContext);
 
     // Fetching all users from db
     useEffect(() => {
@@ -15,7 +15,7 @@ const Users = () => {
                 setUserDb(data);
             })
             .catch(console.dir);
-    }, [loading]);
+    }, [render]);
 
     // Make verify
     const verifyHandler = user => {
@@ -23,7 +23,7 @@ const Users = () => {
             method: 'PUT'
         }).then(() => {
             toast.success('Verify Success!', {position: 'bottom-center'});
-            setLoading(!loading);
+            setRender(!render);
         }).catch(err => console.log(err));
     };
 
@@ -33,7 +33,7 @@ const Users = () => {
             method: 'PUT'
         }).then(() => {
             toast.success('Unverify Success!', {position: 'bottom-center'});
-            setLoading(!loading);
+            setRender(!render);
         }).catch(err => console.log(err));
     };
 
@@ -43,7 +43,7 @@ const Users = () => {
             method: 'PUT'
         }).then(() => {
             toast.success('Make Admin Success!', {position: 'bottom-center'});
-            setLoading(!loading);
+            setRender(!render);
         }).catch(err => console.log(err));
     };
 
@@ -53,7 +53,7 @@ const Users = () => {
             method: 'PUT'
         }).then(() => {
             toast.success('Remove Admin Success!', {position: 'bottom-center'});
-            setLoading(!loading);
+            setRender(!render);
         }).catch(err => console.log(err));
     };
 
@@ -68,7 +68,7 @@ const Users = () => {
             body: JSON.stringify(complainer)
         }).then(() => {
             toast.success('Remove User Success!', {position: 'bottom-center'});
-            setLoading(!loading);
+            setRender(!render);
         }).catch(err => console.log(err));
     };
 

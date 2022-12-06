@@ -7,16 +7,29 @@ const MyNotes = () => {
     const [myNotes, setMyNotes] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/notes/email/${user.email}`)
+        fetch(`http://localhost:5000/notes/email/${user.email}`, {
+            headers: {authorization: localStorage.getItem('token')}
+        })
             .then(res => res.json())
             .then(data => setMyNotes(data))
             .catch(err => console.log(err));
     }, [user.email]);
 
+    /*
+    useEffect(() => {
+        fetch(`https://dress-recycle-server.vercel.app/users/${user?.email}`, {
+            headers: {authorization: localStorage.getItem('token')}
+        })
+            .then(res => res.json())
+            .then(data => setUserInfo(data))
+            .catch(err => console.log(err));
+    }, [user?.email]);
+    */
+
     return (
         <div>
             <h2 className='text-3xl text-center font-bold my-5'>All Notes</h2>
-            <div className="overflow-x-auto w-full my-10">
+            <div className="overflow-x-auto w-full my-10 pr-2">
                 <table className="table w-full">
                     <thead>
                         <tr>

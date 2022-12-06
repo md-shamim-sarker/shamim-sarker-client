@@ -10,6 +10,7 @@ const UserContext = ({children}) => {
     const [userDb, setUserDb] = useState({});
     const [loading, setLoading] = useState(true);
     const [toggleMenu, setToggleMenu] = useState(false);
+    const [render, setRender] = useState(true);
 
     useEffect(() => {
         fetch(`http://localhost:5000/users/${user?.email}`)
@@ -130,7 +131,9 @@ const UserContext = ({children}) => {
         signInWithEmailPassword,
         sendUserEmailVerification,
         allCategories,
-        userDb
+        userDb,
+        render,
+        setRender
     };
 
     return (

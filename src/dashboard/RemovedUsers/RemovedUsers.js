@@ -5,7 +5,7 @@ import RemovedUser from './RemovedUser';
 
 const RemovedUsers = () => {
     const [userDb, setUserDb] = useState([]);
-    const {loading, setLoading} = useContext(AuthContext);
+    const {render, setRender} = useContext(AuthContext);
 
     // Fetching all users from db
     useEffect(() => {
@@ -15,7 +15,7 @@ const RemovedUsers = () => {
                 setUserDb(data);
             })
             .catch(console.dir);
-    }, [loading]);
+    }, [render]);
 
     // Restore User
     const restoreUserHandler = user => {
@@ -23,7 +23,7 @@ const RemovedUsers = () => {
             method: 'PUT'
         }).then(() => {
             toast.success('Restore User Success!', {position: 'bottom-center'});
-            setLoading(!loading);
+            setRender(!render);
         }).catch(err => console.log(err));
     };
 

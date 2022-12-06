@@ -2,13 +2,15 @@ import React, {useContext} from 'react';
 import login from '../../assets/login.svg';
 import {FcGoogle} from 'react-icons/fc';
 import {BsFacebook, BsGithub} from 'react-icons/bs';
-import {Link, useNavigate} from 'react-router-dom';
+import {Link, useLocation, useNavigate} from 'react-router-dom';
 import {AuthContext} from '../../contexts/UserContext';
 import toast from 'react-hot-toast';
 
 const Login = () => {
     const {signInWithEmailPassword, signInWithGoogle, signInWithGithub, signInWithFacebook, addToDb, isUserExist} = useContext(AuthContext);
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
 
     const userInfoHandler = result => {
         const socialUser = result.user;
@@ -35,7 +37,7 @@ const Login = () => {
                         toast.success("Login Successful!", {
                             position: 'bottom-center'
                         });
-                        navigate("/");
+                        navigate(from, {replace: true});
                     })
                     .catch(() => {
                         const url = 'http://localhost:5000/users';
@@ -44,7 +46,7 @@ const Login = () => {
                                 toast.success("Login Successful!", {
                                     position: 'bottom-center'
                                 });
-                                navigate("/");
+                                navigate(from, {replace: true});
                             })
                             .catch(err => console.log(err));
                     });
@@ -62,7 +64,7 @@ const Login = () => {
                         toast.success("Login Successful!", {
                             position: 'bottom-center'
                         });
-                        navigate("/");
+                        navigate(from, {replace: true});
                     })
                     .catch(() => {
                         const url = 'http://localhost:5000/users';
@@ -71,7 +73,7 @@ const Login = () => {
                                 toast.success("Login Successful!", {
                                     position: 'bottom-center'
                                 });
-                                navigate("/");
+                                navigate(from, {replace: true});
                             })
                             .catch(err => console.log(err));
                     });
@@ -89,7 +91,7 @@ const Login = () => {
                         toast.success("Login Successful!", {
                             position: 'bottom-center'
                         });
-                        navigate("/");
+                        navigate(from, {replace: true});
                     })
                     .catch(() => {
                         const url = 'http://localhost:5000/users';
@@ -98,7 +100,7 @@ const Login = () => {
                                 toast.success("Login Successful!", {
                                     position: 'bottom-center'
                                 });
-                                navigate("/");
+                                navigate(from, {replace: true});
                             })
                             .catch(err => console.log(err));
                     });
@@ -113,11 +115,26 @@ const Login = () => {
         const password = form.password.value;
 
         signInWithEmailPassword(email, password)
-            .then(() => {
-                toast.success("Login Successful!", {
-                    position: 'bottom-center'
-                });
-                navigate("/");
+            .then((result) => {
+                const email = result.user.email;
+                const currentUser = {email};
+                // get jwt token
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        localStorage.setItem('token', data.token);
+                        toast.success("Login Successful!", {
+                            position: 'bottom-center'
+                        });
+                        navigate(from, {replace: true});
+                    })
+                    .catch(err => console.log(err));
             })
             .catch(err => console.log(err));
     };

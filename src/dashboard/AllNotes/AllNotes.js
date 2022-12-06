@@ -3,7 +3,7 @@ import {AuthContext} from '../../contexts/UserContext';
 import Note from './Note';
 
 const AllNotes = () => {
-    const {loading} = useContext(AuthContext);
+    const {render} = useContext(AuthContext);
     const [allNotes, setAllNotes] = useState([]);
 
     useEffect(() => {
@@ -11,12 +11,12 @@ const AllNotes = () => {
             .then(res => res.json())
             .then(data => setAllNotes(data))
             .catch(err => console.log(err));
-    }, [loading]);
+    }, [render]);
 
     return (
         <div>
             <h2 className='text-3xl text-center font-bold my-5'>All Notes</h2>
-            <div className="overflow-x-auto w-full my-10">
+            <div className="overflow-x-auto w-full my-10 pr-2">
                 <table className="table w-full">
                     <thead>
                         <tr>
