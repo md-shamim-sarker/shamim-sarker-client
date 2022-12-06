@@ -26,7 +26,7 @@ const NotesHome = () => {
 
     return (
         <div className='w-full flex justify-center'>
-            <div className="stats shadow w-11/12 lg:w-4/5 my-28 flex flex-col lg:flex-row bg-gray-100 mr-5">
+            <div className="stats shadow w-11/12 lg:w-4/5 my-40 flex flex-col lg:flex-row bg-gray-100 mr-5">
                 <div className="stat text-center">
                     <div className="stat-title text-2xl font-bold">Notes Type</div>
                     <div className="stat-value">Tech Notes</div>
