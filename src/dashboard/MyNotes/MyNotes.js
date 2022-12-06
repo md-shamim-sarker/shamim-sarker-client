@@ -7,7 +7,7 @@ const MyNotes = () => {
     const [myNotes, setMyNotes] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/notes/email/${user.email}`, {
+        fetch(`https://shamim-sarker-server.vercel.app/notes/email/${user.email}`, {
             headers: {authorization: localStorage.getItem('token')}
         })
             .then(res => res.json())

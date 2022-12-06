@@ -71,7 +71,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/notes/:id",
-                loader: ({params}) => fetch(`http://localhost:5000/notes/id/${params.id}`),
+                loader: ({params}) => fetch(`https://shamim-sarker-server.vercel.app/notes/id/${params.id}`),
                 element: <Notes></Notes>
             }
         ],
@@ -87,7 +87,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/showQuestions/:id",
-                loader: ({params}) => fetch(`http://localhost:5000/notes/id/${params.id}`),
+                loader: ({params}) => fetch(`https://shamim-sarker-server.vercel.app/notes/id/${params.id}`),
                 element: <ShowQuestions></ShowQuestions>
             }
         ],
