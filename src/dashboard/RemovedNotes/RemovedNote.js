@@ -1,6 +1,6 @@
 import React from 'react';
 
-const RemovedNote = ({note, index, restoreNoteHandler}) => {
+const RemovedNote = ({note, index, restoreNoteHandler, deleteHandler}) => {
     return (
         <tr>
             <th>
@@ -27,7 +27,7 @@ const RemovedNote = ({note, index, restoreNoteHandler}) => {
                 <button onClick={() => restoreNoteHandler(note)} className='btn btn-primary btn-sm'>Note Restore</button>
             </td>
             <td>
-                <button onClick={() => restoreNoteHandler(note)} className='btn btn-primary btn-sm'>Delete Permanently</button>
+                <button onClick={() => deleteHandler(note)} className='btn btn-primary btn-sm'>Delete Permanently</button>
             </td>
         </tr>
     );

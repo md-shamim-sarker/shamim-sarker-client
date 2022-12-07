@@ -2,7 +2,6 @@ import React from 'react';
 import {GoVerified} from 'react-icons/go';
 
 const User = ({user, index, verifyHandler, unverifyHandler, makeAdminHandler, removeAdminHandler, removeUserHandler}) => {
-    console.log(index, user);
     return (
         <tr>
             <th>
@@ -27,7 +26,8 @@ const User = ({user, index, verifyHandler, unverifyHandler, makeAdminHandler, re
                         <GoVerified className='text-blue-700'></GoVerified>
                     }
                 </div>
-                <span>{user.email}</span>
+                <span>{user.email}</span><br />
+                <span>{user.phone}</span>
             </td>
             <td>
                 {

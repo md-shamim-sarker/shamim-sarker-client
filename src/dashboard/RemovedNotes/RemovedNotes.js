@@ -28,6 +28,17 @@ const RemovedNotes = () => {
         }).catch(err => console.log(err));
     };
 
+    const deleteHandler = note => {
+        fetch(`http://localhost:5000/notes/${note._id}`, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(() => {
+                toast.success('Delete Success!', {position: 'bottom-center'});
+                setRender(!render);
+            });
+    };
+
     return (
         <div>
             <h2 className='text-3xl text-center font-bold my-5'>All Removed Notes</h2>
@@ -51,6 +62,7 @@ const RemovedNotes = () => {
                                 note={note}
                                 index={index}
                                 restoreNoteHandler={restoreNoteHandler}
+                                deleteHandler={deleteHandler}
                             ></RemovedNote>)
                         }
                     </tbody>

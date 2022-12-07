@@ -143,7 +143,6 @@ const router = createBrowserRouter([
             },
             {
                 path: "/dashboard/my-favorites/:email",
-                loader: ({params}) => fetch(`http://localhost:5000/favorites/${params.email}`),
                 element: <MyFavorites></MyFavorites>
             },
             {

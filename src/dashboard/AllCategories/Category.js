@@ -10,7 +10,7 @@ const Category = ({category, index}) => {
                 <div className='badge badge-primary w-20'>{category.categoryType}</div>
             </td>
             <td>
-                <button className='btn btn-primary btn-sm'>Update</button>
+                <label htmlFor="category-modal" className='btn btn-primary btn-sm'>Update</label>
             </td>
             <td>
                 <button className='btn btn-primary btn-sm'>Delete</button>

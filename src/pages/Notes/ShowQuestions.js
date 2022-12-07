@@ -55,8 +55,12 @@ const ShowQuestions = () => {
             <div className='w-full flex justify-center my-5'>
                 {
                     fav.length < 1
-                        ? <button onClick={favoriteHandler}><GiEternalLove></GiEternalLove></button>
-                        : <button onClick={favoriteHandler}><GiEternalLove></GiEternalLove></button>
+                        ? <button onClick={favoriteHandler} title='Add to favorite'>
+                            <GiEternalLove className='text-4xl'></GiEternalLove>
+                        </button>
+                        : <button title='Already add to favorite'>
+                            <GiEternalLove className='text-4xl text-red-600'></GiEternalLove>
+                        </button>
                 }
             </div>
         </div>

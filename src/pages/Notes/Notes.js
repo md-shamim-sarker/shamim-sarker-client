@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactEmbedGist from 'react-embed-gist';
-import {useLoaderData} from 'react-router-dom';
+import {Link, useLoaderData} from 'react-router-dom';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import parse from 'html-react-parser';
 import {useContext} from 'react';
@@ -8,6 +8,7 @@ import {AuthContext} from '../../contexts/UserContext';
 import {useEffect} from 'react';
 import {useState} from 'react';
 import toast from 'react-hot-toast';
+import {MdFavorite} from 'react-icons/md';
 
 const Notes = () => {
     const note = useLoaderData();
@@ -67,12 +68,17 @@ const Notes = () => {
                     }
                 </div>
             </div>
-            <div className='w-full flex justify-center my-5'>
+            <div className='w-full flex justify-center my-5 items-center gap-x-2'>
                 {
                     fav.length < 1
-                        ? <button onClick={favoriteHandler} className='btn btn-primary'>Favorite</button>
-                        : <button onClick={favoriteHandler} className='btn btn-primary' disabled>Favorite</button>
+                        ? <button onClick={favoriteHandler} title='Add to favorite'>
+                            <MdFavorite className='text-4xl'></MdFavorite>
+                        </button>
+                        : <button title='Already add to favorite'>
+                            <MdFavorite className='text-4xl text-red-600'></MdFavorite>
+                        </button>
                 }
+                <Link to={`/dashboard/my-favorites/${user?.email}`} className="btn btn-primary btn-sm">Go to favorite list</Link>
             </div>
         </div>
     );
