@@ -40,7 +40,7 @@ const Login = () => {
                         navigate(from, {replace: true});
                     })
                     .catch(() => {
-                        const url = 'https://shamim-sarker-server.vercel.app/users';
+                        const url = 'http://localhost:5000/users';
                         addToDb(url, user)
                             .then(() => {
                                 toast.success("Login Successful!", {
@@ -67,7 +67,7 @@ const Login = () => {
                         navigate(from, {replace: true});
                     })
                     .catch(() => {
-                        const url = 'https://shamim-sarker-server.vercel.app/users';
+                        const url = 'http://localhost:5000/users';
                         addToDb(url, user)
                             .then(() => {
                                 toast.success("Login Successful!", {
@@ -94,7 +94,7 @@ const Login = () => {
                         navigate(from, {replace: true});
                     })
                     .catch(() => {
-                        const url = 'https://shamim-sarker-server.vercel.app/users';
+                        const url = 'http://localhost:5000/users';
                         addToDb(url, user)
                             .then(() => {
                                 toast.success("Login Successful!", {
@@ -119,7 +119,7 @@ const Login = () => {
                 const email = result.user.email;
                 const currentUser = {email};
                 // get jwt token
-                fetch('https://shamim-sarker-server.vercel.app/jwt', {
+                fetch('http://localhost:5000/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

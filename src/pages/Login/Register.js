@@ -41,7 +41,7 @@ const Register = () => {
                         isRemoved: false,
                         isAdmin: false
                     };
-                    const url = 'https://shamim-sarker-server.vercel.app/users';
+                    const url = 'http://localhost:5000/users';
                     addToDb(url, user)
                         .then(() => {
                             createUser(email, password)

@@ -1,8 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-const MyNote = ({note, index}) => {
-    console.log(note);
+const MyNote = ({note, index, removeNoteHandler, location}) => {
     return (
         <tr>
             <td>{index + 1}</td>
@@ -24,13 +23,24 @@ const MyNote = ({note, index}) => {
                 }
             </td>
             <td>
-                <button className="btn btn-primary btn-sm">Update</button>
+                {
+                    note.type === 'gist'
+                        ? <Link to={`/dashboard/gistUpdate/${note._id}`} className="btn btn-primary btn-sm">Update</Link>
+                        : note.type === 'quill'
+                            ? <Link to={`/dashboard/quillUpdate/${note._id}`} className="btn btn-primary btn-sm">Update</Link>
+                            : <Link to={`/dashboard/interviewUpdate/${note._id}`} className="btn btn-primary btn-sm">Update</Link>
+                }
             </td>
             <td>
-                <button className="btn btn-primary btn-sm">Delete</button>
+                <button onClick={() => removeNoteHandler(note)} className="btn btn-primary btn-sm">Delete</button>
             </td>
         </tr>
     );
 };
 
 export default MyNote;
+
+/*
+const location = useLocation();
+state = {{from: location;}} replace;
+*/

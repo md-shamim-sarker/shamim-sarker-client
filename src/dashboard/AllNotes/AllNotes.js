@@ -1,17 +1,36 @@
 import React, {useContext, useEffect, useState} from 'react';
+import toast from 'react-hot-toast';
 import {AuthContext} from '../../contexts/UserContext';
 import Note from './Note';
 
 const AllNotes = () => {
-    const {render} = useContext(AuthContext);
+    const {user, render, setRender, setPath} = useContext(AuthContext);
     const [allNotes, setAllNotes] = useState([]);
 
     useEffect(() => {
-        fetch('https://shamim-sarker-server.vercel.app/notes')
+        fetch('http://localhost:5000/notes')
             .then(res => res.json())
-            .then(data => setAllNotes(data))
+            .then(data => {
+                setAllNotes(data);
+                setPath("/dashboard/all-notes");
+            })
             .catch(err => console.log(err));
-    }, [render]);
+    }, [render, setPath]);
+
+    // Remove Note
+    const removeNoteHandler = note => {
+        const complainerName = user.displayName;
+        const complainerEmail = user.email;
+        const complainer = {complainerName, complainerEmail};
+        fetch(`http://localhost:5000/notes/remove-note/${note._id}`, {
+            method: 'PUT',
+            headers: {'content-type': 'application/json'},
+            body: JSON.stringify(complainer)
+        }).then(() => {
+            toast.success('Remove User Success!', {position: 'bottom-center'});
+            setRender(!render);
+        }).catch(err => console.log(err));
+    };
 
     return (
         <div>
@@ -34,6 +53,7 @@ const AllNotes = () => {
                                 key={note._id}
                                 index={index}
                                 note={note}
+                                removeNoteHandler={removeNoteHandler}
                             ></Note>)
                         }
                     </tbody>

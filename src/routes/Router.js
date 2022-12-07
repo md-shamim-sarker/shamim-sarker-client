@@ -3,6 +3,7 @@ import AllCategories from "../dashboard/AllCategories/AllCategories";
 import AllNotes from "../dashboard/AllNotes/AllNotes";
 import MyFavorites from "../dashboard/MyFavorites/MyFavorites";
 import MyNotes from "../dashboard/MyNotes/MyNotes";
+import RemovedNotes from "../dashboard/RemovedNotes/RemovedNotes";
 import RemovedUsers from "../dashboard/RemovedUsers/RemovedUsers";
 import Summary from "../dashboard/Summary/Summary";
 import Users from "../dashboard/Users/Users";
@@ -14,6 +15,9 @@ import About from "../pages/About/About";
 import AddNotesGist from "../pages/AddNotes/AddNotesGist";
 import AddNotesInterview from "../pages/AddNotes/AddNotesInterview";
 import AddNotesQuill from "../pages/AddNotes/AddNotesQuill";
+import UpdateNotesGist from "../pages/AddNotes/UpdateNotesGist";
+import UpdateNotesInterview from "../pages/AddNotes/UpdateNotesInterview";
+import UpdateNotesQuill from "../pages/AddNotes/UpdateNotesQuill";
 import Contact from "../pages/Contact/Contact";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Home from "../pages/Home/Home";
@@ -71,7 +75,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/notes/:id",
-                loader: ({params}) => fetch(`https://shamim-sarker-server.vercel.app/notes/id/${params.id}`),
+                loader: ({params}) => fetch(`http://localhost:5000/notes/id/${params.id}`),
                 element: <Notes></Notes>
             }
         ],
@@ -87,7 +91,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/showQuestions/:id",
-                loader: ({params}) => fetch(`https://shamim-sarker-server.vercel.app/notes/id/${params.id}`),
+                loader: ({params}) => fetch(`http://localhost:5000/notes/id/${params.id}`),
                 element: <ShowQuestions></ShowQuestions>
             }
         ],
@@ -122,6 +126,10 @@ const router = createBrowserRouter([
                 element: <SuperAdminRouter><RemovedUsers></RemovedUsers></SuperAdminRouter>
             },
             {
+                path: "/dashboard/removed-notes",
+                element: <SuperAdminRouter><RemovedNotes></RemovedNotes></SuperAdminRouter>
+            },
+            {
                 path: "/dashboard/all-categories",
                 element: <AdminRouter><AllCategories></AllCategories></AdminRouter>
             },
@@ -134,8 +142,24 @@ const router = createBrowserRouter([
                 element: <WriterRouter><MyNotes></MyNotes></WriterRouter>
             },
             {
-                path: "/dashboard/my-favorites",
+                path: "/dashboard/my-favorites/:email",
+                loader: ({params}) => fetch(`http://localhost:5000/favorites/${params.email}`),
                 element: <MyFavorites></MyFavorites>
+            },
+            {
+                path: "/dashboard/gistUpdate/:id",
+                loader: ({params}) => fetch(`http://localhost:5000/notes/id/${params.id}`),
+                element: <UpdateNotesGist></UpdateNotesGist>
+            },
+            {
+                path: "/dashboard/interviewUpdate/:id",
+                loader: ({params}) => fetch(`http://localhost:5000/notes/id/${params.id}`),
+                element: <UpdateNotesInterview></UpdateNotesInterview>
+            },
+            {
+                path: "/dashboard/quillUpdate/:id",
+                loader: ({params}) => fetch(`http://localhost:5000/notes/id/${params.id}`),
+                element: <UpdateNotesQuill></UpdateNotesQuill>
             }
         ],
         errorElement: <ErrorPage></ErrorPage>

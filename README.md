@@ -1,7 +1,7 @@
 https://shamim-sarker.web.app/
 
-https://shamim-sarker-server.vercel.app/
-https://shamim-sarker-server.vercel.app/
+http://localhost:5000/
+http://localhost:5000/
 
 npm run build && firebase deploy
 

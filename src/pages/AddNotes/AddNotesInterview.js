@@ -11,7 +11,7 @@ const AddNotesInterview = () => {
     const [categories, setCategories] = useState([]);
     const [newCategory, setNewCategory] = useState(false);
     const navigate = useNavigate();
-    const [note, setNote] = useState('');
+    const [code, setCode] = useState('');
 
     useEffect(() => {
         allCategories('interview')
@@ -27,6 +27,7 @@ const AddNotesInterview = () => {
         const category = form.category.value;
         const categoryType = 'interview';
         const heading = form.heading.value;
+        const intro = form.intro.value;
         const type = 'interview';
         const userName = user.displayName;
         const userPhoto = user.photoURL;
@@ -34,31 +35,34 @@ const AddNotesInterview = () => {
         const postDate = Date().slice(4, 21);
         const ratings = 0;
         const likes = 0;
+        const isRemoved = false;
 
         const categoryObj = {category, categoryType};
         const noteObj = {
             category,
             categoryType,
             heading,
+            intro,
             userName,
             userPhoto,
             userEmail,
             postDate,
             ratings,
             likes,
-            note,
-            type
+            code,
+            type,
+            isRemoved
         };
 
         if(category !== 'Select a category' && category !== "") {
-            fetch(`https://shamim-sarker-server.vercel.app/categories/${category}`)
+            fetch(`http://localhost:5000/categories/${category}`)
                 .then(res => res.json())
                 .then((data) => {
                     console.log(data);
 
                     // If category exists
                     if(data.category === category) {
-                        fetch('https://shamim-sarker-server.vercel.app/notes', {
+                        fetch('http://localhost:5000/notes', {
                             method: 'POST',
                             headers: {'content-type': 'application/json'},
                             body: JSON.stringify(noteObj)
@@ -74,12 +78,12 @@ const AddNotesInterview = () => {
                 })
                 .catch(() => {
                     // If category doesn't exist
-                    fetch('https://shamim-sarker-server.vercel.app/categories', {
+                    fetch('http://localhost:5000/categories', {
                         method: 'POST',
                         headers: {'content-type': 'application/json'},
                         body: JSON.stringify(categoryObj)
                     }).then(() => {
-                        fetch('https://shamim-sarker-server.vercel.app/notes', {
+                        fetch('http://localhost:5000/notes', {
                             method: 'POST',
                             headers: {'content-type': 'application/json'},
                             body: JSON.stringify(noteObj)
@@ -148,8 +152,15 @@ const AddNotesInterview = () => {
                         placeholder="Enter Heading"
                         className="input input-bordered w-full rounded-none focus:outline-none text-lg" />
                 </div>
+
+                <textarea
+                    tabIndex={3}
+                    name='intro'
+                    className="textarea textarea-bordered w-full rounded-none focus:outline-none text-lg"
+                    placeholder="Write something about this note....."></textarea>
+
                 <div className='text-lg'>
-                    <ReactQuill tabIndex={3} theme="snow" value={note} onChange={setNote} />
+                    <ReactQuill tabIndex={3} theme="snow" value={code} onChange={setCode} />
                 </div>
                 <button type='submit' className='btn btn-primary rounded-none'>Submit</button>
             </div>

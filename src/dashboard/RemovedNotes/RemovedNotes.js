@@ -1,56 +1,57 @@
 import React, {useContext, useEffect, useState} from 'react';
 import toast from 'react-hot-toast';
 import {AuthContext} from '../../contexts/UserContext';
-import RemovedUser from './RemovedUser';
+import RemovedNote from './RemovedNote';
 
-const RemovedUsers = () => {
-    const [userDb, setUserDb] = useState([]);
+const RemovedNotes = () => {
+    const [notes, setNotes] = useState([]);
     const {render, setRender} = useContext(AuthContext);
 
-    // Fetching all users from db
+    // Fetching all removed notes
     useEffect(() => {
-        fetch('http://localhost:5000/removed-users')
+        fetch('http://localhost:5000/removed-notes')
             .then(res => res.json())
             .then(data => {
-                setUserDb(data);
+                setNotes(data);
             })
             .catch(console.dir);
     }, [render]);
+    console.log(notes);
 
     // Restore User
-    const restoreUserHandler = user => {
-        fetch(`http://localhost:5000/users/restore-user/${user._id}`, {
+    const restoreNoteHandler = note => {
+        fetch(`http://localhost:5000/notes/restore-note/${note._id}`, {
             method: 'PUT'
         }).then(() => {
-            toast.success('Restore User Success!', {position: 'bottom-center'});
+            toast.success('Restore Success!', {position: 'bottom-center'});
             setRender(!render);
         }).catch(err => console.log(err));
     };
 
     return (
         <div>
-            <h2 className='text-3xl text-center font-bold my-5'>All Removed Users</h2>
+            <h2 className='text-3xl text-center font-bold my-5'>All Removed Notes</h2>
             <div className="overflow-x-auto w-full pl-1 pr-2 my-10">
                 <table className="table w-full">
                     <thead>
                         <tr>
                             <th>SL</th>
-                            <th>Image</th>
-                            <th>Name & Email</th>
-                            <th>Role</th>
+                            <th>Category</th>
+                            <th>Heading</th>
+                            <th>Type</th>
                             <th>Complain From</th>
-                            <th>User Restore</th>
+                            <th>Note Restore</th>
                             <th>Delete Permanent</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            userDb.map((user, index) => <RemovedUser
-                                key={user._id}
-                                user={user}
+                            notes.map((note, index) => <RemovedNote
+                                key={note._id}
+                                note={note}
                                 index={index}
-                                restoreUserHandler={restoreUserHandler}
-                            ></RemovedUser>)
+                                restoreNoteHandler={restoreNoteHandler}
+                            ></RemovedNote>)
                         }
                     </tbody>
                 </table>
@@ -59,4 +60,4 @@ const RemovedUsers = () => {
     );
 };
 
-export default RemovedUsers;
+export default RemovedNotes;

@@ -37,6 +37,11 @@ const DashboardLayout = () => {
                                             }
 
                                             {
+                                                userDb?.role === 'super-admin' &&
+                                                <NavLink to={"/dashboard/removed-notes"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>Removed Notes</NavLink>
+                                            }
+
+                                            {
                                                 (userDb?.role === 'super-admin' || userDb?.isAdmin === true) &&
                                                 <NavLink to={"/dashboard/all-categories"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>All Categories</NavLink>
                                             }
@@ -59,7 +64,7 @@ const DashboardLayout = () => {
                                                 <NavLink to={"/dashboard/all-notes"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>All Notes</NavLink>
                                             }
 
-                                            <NavLink to={"/dashboard/my-favorites"} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>My Favorite List</NavLink>
+                                            <NavLink to={`/dashboard/my-favorites/${userDb?.email}`} className={({isActive}) => isActive ? 'border-r-2 border-blue-700 text-blue-600 px-2 py-0' : 'text-gray-900 px-2 py-0'}>My Favorite List</NavLink>
                                         </>
                                     }
                                 </div>

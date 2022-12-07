@@ -117,7 +117,19 @@ const Navbar = () => {
                     </label>
                 }
                 {
-                    window.location.pathname === '/dashboard' &&
+                    (
+                        window.location.pathname === '/dashboard' ||
+                        window.location.pathname === '/dashboard/users' ||
+                        window.location.pathname === '/dashboard/removed-users' ||
+                        window.location.pathname === '/dashboard/all-categories' ||
+                        window.location.pathname === '/dashboard/add-notes' ||
+                        window.location.pathname === '/dashboard/add-notes-quill' ||
+                        window.location.pathname === '/dashboard/add-notes-interview' ||
+                        window.location.pathname === '/dashboard/my-notes' ||
+                        window.location.pathname === '/dashboard/all-notes' ||
+                        window.location.pathname === '/dashboard/my-favorites'
+                    )
+                    &&
                     < label htmlFor="dashboard-drawer" className="btn btn-primary ml-2 drawer-button lg:hidden">
                         <AiOutlineMenuFold className='text-3xl'></AiOutlineMenuFold>
                     </label>
