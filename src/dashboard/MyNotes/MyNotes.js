@@ -10,7 +10,7 @@ const MyNotes = () => {
     const location = useLocation();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/notes/email/${user.email}`, {
+        fetch(`https://shamim-sarker-server.vercel.app/notes/email/${user.email}`, {
             headers: {authorization: localStorage.getItem('token')}
         })
             .then(res => res.json())
@@ -26,7 +26,7 @@ const MyNotes = () => {
         const complainerName = user.displayName;
         const complainerEmail = user.email;
         const complainer = {complainerName, complainerEmail};
-        fetch(`http://localhost:5000/notes/remove-note/${note._id}`, {
+        fetch(`https://shamim-sarker-server.vercel.app/notes/remove-note/${note._id}`, {
             method: 'PUT',
             headers: {'content-type': 'application/json'},
             body: JSON.stringify(complainer)

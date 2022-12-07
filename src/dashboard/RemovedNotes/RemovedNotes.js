@@ -9,7 +9,7 @@ const RemovedNotes = () => {
 
     // Fetching all removed notes
     useEffect(() => {
-        fetch('http://localhost:5000/removed-notes')
+        fetch('https://shamim-sarker-server.vercel.app/removed-notes')
             .then(res => res.json())
             .then(data => {
                 setNotes(data);
@@ -20,7 +20,7 @@ const RemovedNotes = () => {
 
     // Restore User
     const restoreNoteHandler = note => {
-        fetch(`http://localhost:5000/notes/restore-note/${note._id}`, {
+        fetch(`https://shamim-sarker-server.vercel.app/notes/restore-note/${note._id}`, {
             method: 'PUT'
         }).then(() => {
             toast.success('Restore Success!', {position: 'bottom-center'});
@@ -29,7 +29,7 @@ const RemovedNotes = () => {
     };
 
     const deleteHandler = note => {
-        fetch(`http://localhost:5000/notes/${note._id}`, {
+        fetch(`https://shamim-sarker-server.vercel.app/notes/${note._id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

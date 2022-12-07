@@ -5,7 +5,7 @@ const MyFavorite = ({fav, index, removeHandler}) => {
     const [note, setNote] = useState({});
 
     useEffect(() => {
-        fetch(`http://localhost:5000/notes/id/${fav?.noteId}`)
+        fetch(`https://shamim-sarker-server.vercel.app/notes/id/${fav?.noteId}`)
             .then(res => res.json())
             .then(data => setNote(data))
             .catch(err => console.log(err));

@@ -8,7 +8,7 @@ const AllNotes = () => {
     const [allNotes, setAllNotes] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/notes')
+        fetch('https://shamim-sarker-server.vercel.app/notes')
             .then(res => res.json())
             .then(data => {
                 setAllNotes(data);
@@ -22,7 +22,7 @@ const AllNotes = () => {
         const complainerName = user.displayName;
         const complainerEmail = user.email;
         const complainer = {complainerName, complainerEmail};
-        fetch(`http://localhost:5000/notes/remove-note/${note._id}`, {
+        fetch(`https://shamim-sarker-server.vercel.app/notes/remove-note/${note._id}`, {
             method: 'PUT',
             headers: {'content-type': 'application/json'},
             body: JSON.stringify(complainer)

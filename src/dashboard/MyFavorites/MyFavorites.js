@@ -10,14 +10,14 @@ const MyFavorites = () => {
     const [favorites, setFavorites] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/favorites/${user?.email}`)
+        fetch(`https://shamim-sarker-server.vercel.app/favorites/${user?.email}`)
             .then(res => res.json())
             .then(data => setFavorites(data))
             .catch(err => console.log(err));
     }, [user?.email, setFavorites, render]);
 
     const removeHandler = fav => {
-        fetch(`http://localhost:5000/favorites/${fav._id}`, {
+        fetch(`https://shamim-sarker-server.vercel.app/favorites/${fav._id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

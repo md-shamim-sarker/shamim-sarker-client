@@ -30,7 +30,7 @@ const UpdateNotesQuill = () => {
         const intro = form.intro.value;
         const noteObj = {category, heading, intro, code};
 
-        fetch(`http://localhost:5000/notes/${note2._id}`, {
+        fetch(`https://shamim-sarker-server.vercel.app/notes/${note2._id}`, {
             method: 'PUT',
             headers: {'content-type': 'application/json'},
             body: JSON.stringify(noteObj)

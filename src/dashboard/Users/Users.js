@@ -9,7 +9,7 @@ const Users = () => {
 
     // Fetching all users from db
     useEffect(() => {
-        fetch('http://localhost:5000/users')
+        fetch('https://shamim-sarker-server.vercel.app/users')
             .then(res => res.json())
             .then(data => {
                 setUserDb(data);
@@ -19,7 +19,7 @@ const Users = () => {
 
     // Make verify
     const verifyHandler = user => {
-        fetch(`http://localhost:5000/users/verify/${user._id}`, {
+        fetch(`https://shamim-sarker-server.vercel.app/users/verify/${user._id}`, {
             method: 'PUT'
         }).then(() => {
             toast.success('Verify Success!', {position: 'bottom-center'});
@@ -29,7 +29,7 @@ const Users = () => {
 
     // Make unverify
     const unverifyHandler = user => {
-        fetch(`http://localhost:5000/users/unverify/${user._id}`, {
+        fetch(`https://shamim-sarker-server.vercel.app/users/unverify/${user._id}`, {
             method: 'PUT'
         }).then(() => {
             toast.success('Unverify Success!', {position: 'bottom-center'});
@@ -39,7 +39,7 @@ const Users = () => {
 
     // Make Admin
     const makeAdminHandler = user => {
-        fetch(`http://localhost:5000/users/make-admin/${user._id}`, {
+        fetch(`https://shamim-sarker-server.vercel.app/users/make-admin/${user._id}`, {
             method: 'PUT'
         }).then(() => {
             toast.success('Make Admin Success!', {position: 'bottom-center'});
@@ -49,7 +49,7 @@ const Users = () => {
 
     // Remove Admin
     const removeAdminHandler = user => {
-        fetch(`http://localhost:5000/users/remove-admin/${user._id}`, {
+        fetch(`https://shamim-sarker-server.vercel.app/users/remove-admin/${user._id}`, {
             method: 'PUT'
         }).then(() => {
             toast.success('Remove Admin Success!', {position: 'bottom-center'});
@@ -62,7 +62,7 @@ const Users = () => {
         const complainerName = user.displayName;
         const complainerEmail = user.email;
         const complainer = {complainerName, complainerEmail};
-        fetch(`http://localhost:5000/users/remove-user/${usr._id}`, {
+        fetch(`https://shamim-sarker-server.vercel.app/users/remove-user/${usr._id}`, {
             method: 'PUT',
             headers: {'content-type': 'application/json'},
             body: JSON.stringify(complainer)

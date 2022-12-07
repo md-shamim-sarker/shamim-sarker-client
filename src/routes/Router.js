@@ -75,7 +75,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/notes/:id",
-                loader: ({params}) => fetch(`http://localhost:5000/notes/id/${params.id}`),
+                loader: ({params}) => fetch(`https://shamim-sarker-server.vercel.app/notes/id/${params.id}`),
                 element: <Notes></Notes>
             }
         ],
@@ -91,7 +91,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/showQuestions/:id",
-                loader: ({params}) => fetch(`http://localhost:5000/notes/id/${params.id}`),
+                loader: ({params}) => fetch(`https://shamim-sarker-server.vercel.app/notes/id/${params.id}`),
                 element: <ShowQuestions></ShowQuestions>
             }
         ],
@@ -147,17 +147,17 @@ const router = createBrowserRouter([
             },
             {
                 path: "/dashboard/gistUpdate/:id",
-                loader: ({params}) => fetch(`http://localhost:5000/notes/id/${params.id}`),
+                loader: ({params}) => fetch(`https://shamim-sarker-server.vercel.app/notes/id/${params.id}`),
                 element: <UpdateNotesGist></UpdateNotesGist>
             },
             {
                 path: "/dashboard/interviewUpdate/:id",
-                loader: ({params}) => fetch(`http://localhost:5000/notes/id/${params.id}`),
+                loader: ({params}) => fetch(`https://shamim-sarker-server.vercel.app/notes/id/${params.id}`),
                 element: <UpdateNotesInterview></UpdateNotesInterview>
             },
             {
                 path: "/dashboard/quillUpdate/:id",
-                loader: ({params}) => fetch(`http://localhost:5000/notes/id/${params.id}`),
+                loader: ({params}) => fetch(`https://shamim-sarker-server.vercel.app/notes/id/${params.id}`),
                 element: <UpdateNotesQuill></UpdateNotesQuill>
             }
         ],

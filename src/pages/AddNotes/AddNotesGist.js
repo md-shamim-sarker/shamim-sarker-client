@@ -55,12 +55,12 @@ const AddNotesGist = () => {
         };
 
         if(category !== 'Select a category' && category !== "") {
-            fetch(`http://localhost:5000/categories/${category}`)
+            fetch(`https://shamim-sarker-server.vercel.app/categories/${category}`)
                 .then(res => res.json())
                 .then((data) => {
                     // If category exists
                     if(data.category === category) {
-                        fetch('http://localhost:5000/notes', {
+                        fetch('https://shamim-sarker-server.vercel.app/notes', {
                             method: 'POST',
                             headers: {'content-type': 'application/json'},
                             body: JSON.stringify(noteObj)
@@ -76,12 +76,12 @@ const AddNotesGist = () => {
                 })
                 .catch(() => {
                     // If category doesn't exist
-                    fetch('http://localhost:5000/categories', {
+                    fetch('https://shamim-sarker-server.vercel.app/categories', {
                         method: 'POST',
                         headers: {'content-type': 'application/json'},
                         body: JSON.stringify(categoryObj)
                     }).then(() => {
-                        fetch('http://localhost:5000/notes', {
+                        fetch('https://shamim-sarker-server.vercel.app/notes', {
                             method: 'POST',
                             headers: {'content-type': 'application/json'},
                             body: JSON.stringify(noteObj)

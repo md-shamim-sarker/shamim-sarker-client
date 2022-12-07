@@ -15,7 +15,7 @@ const Notes = () => {
     const {user, render, setRender} = useContext(AuthContext);
     const [fav, setFav] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/favorites?email=${user?.email}&noteId=${note?._id}`)
+        fetch(`https://shamim-sarker-server.vercel.app/favorites?email=${user?.email}&noteId=${note?._id}`)
             .then(res => res.json())
             .then(data => setFav(data))
             .catch(err => console.log(err));
@@ -26,7 +26,7 @@ const Notes = () => {
         const noteId = note._id;
         const isFavorite = true;
         const favorite = {email, noteId, isFavorite};
-        fetch('http://localhost:5000/favorites', {
+        fetch('https://shamim-sarker-server.vercel.app/favorites', {
             method: 'POST',
             headers: {'content-type': 'application/json'},
             body: JSON.stringify(favorite)

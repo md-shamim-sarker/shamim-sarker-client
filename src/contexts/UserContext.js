@@ -14,7 +14,7 @@ const UserContext = ({children}) => {
     const [path, setPath] = useState("");
 
     useEffect(() => {
-        fetch(`http://localhost:5000/users/${user?.email}`)
+        fetch(`https://shamim-sarker-server.vercel.app/users/${user?.email}`)
             .then(res => res.json())
             .then(data => setUserDb(data))
             .catch(err => console.log(err));
@@ -22,12 +22,12 @@ const UserContext = ({children}) => {
 
     // Fetching all categories by category type
     const categoryByType = (categoryType) => {
-        return fetch(`http://localhost:5000/notes/category-type/${categoryType}`);
+        return fetch(`https://shamim-sarker-server.vercel.app/notes/category-type/${categoryType}`);
     };
 
     // Fetching all categories by category
     const allCategories = (categoryType) => {
-        return fetch(`http://localhost:5000/categories/categoryType/${categoryType}`);
+        return fetch(`https://shamim-sarker-server.vercel.app/categories/categoryType/${categoryType}`);
     };
 
     // Add to db
@@ -41,7 +41,7 @@ const UserContext = ({children}) => {
 
     // Is User Exist
     const isUserExist = (email) => {
-        return fetch(`http://localhost:5000/users/${email}`);
+        return fetch(`https://shamim-sarker-server.vercel.app/users/${email}`);
     };
 
     // All Provider
